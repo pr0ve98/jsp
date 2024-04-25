@@ -9,7 +9,7 @@
     <title>한나네 집</title>
     <style>
         html {
-            cursor: url(media/치이카와.cur), auto;
+            cursor: url(images/치이카와.cur), auto;
         }
         .container{
             display: grid;
@@ -26,7 +26,7 @@
         body {
             padding: 0px;
             margin: 0 auto;
-            background-image: url(media/bg.gif);
+            background-image: url(images/bg.gif);
         }
         .sbody {
             margin: 0 auto;
@@ -146,10 +146,10 @@
                 </div>
                 <div class="window-body">
                     <div class="field-row-stacker">
-                        <img src="media/profile.png" />
+                        <img src="images/profile.png" />
                         <br/>
                         <p>
-                            <img src="media/star.png" style="width: 10%;" />
+                            <img src="images/star.png" style="width: 10%;" />
                             <b>김한나</b>
                         </p>
                         안녕하세요
@@ -165,7 +165,7 @@
                     <hr/>
                     <li><a href="">Project</a></li>
                     <hr/>
-                    <li><a href="media/memo.html">Memo</a></li>
+                    <li><a href="images/memo.html">Memo</a></li>
                 </ul>
             </div>
         </section>
