@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file = "/include/certification.jsp" %>
 <%
 	String hostIp = request.getRemoteAddr(); // 호스트 현재 아이피 알아오는 명령
 	/* request.setAttribute("hostIp", hostIp); */

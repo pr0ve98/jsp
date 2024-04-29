@@ -24,7 +24,7 @@ public class E1Ok extends HttpServlet {
 		
 		String mid = request.getParameter("mid")==null ? "" : request.getParameter("mid");
 		String pwd = request.getParameter("pwd")==null ? "" : request.getParameter("pwd");
-		String idSave = request.getParameter("idSave");
+		String idSave = request.getParameter("idSave")==null ? "no" : "yes";
 		Cookie[] cookies = request.getCookies();
 		
 		PrintWriter out = response.getWriter();
@@ -37,7 +37,7 @@ public class E1Ok extends HttpServlet {
 			out.println("</script>");
 		}
 		else {
-			if(idSave != null) {
+			if(!idSave.equals("no")) {
 				boolean cMidCheck = false;
 				for(Cookie c : cookies) {
 					if(c.getName().equals("cMid")) {
@@ -48,7 +48,7 @@ public class E1Ok extends HttpServlet {
 				if(!cMidCheck) {
 					Cookie cMid = new Cookie("cMid", mid);
 					cMid.setMaxAge(60*60*24);
-					cMid.setPath("/");
+					cMid.setPath("/"); // 가장 상위 폴더에 쿠키를 저장하겠다는 뜻(못 찾는 경우 방지)
 					response.addCookie(cMid);			
 				}
 			}
@@ -61,6 +61,8 @@ public class E1Ok extends HttpServlet {
 					}
 				}
 			}
+			// request에 담아 넘기면 쿼리스트링을 쓰지 않아도 됨
+			request.setAttribute("mid", mid);
 			viewPage = "/study/0427_storage/e1_Main.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 			dispatcher.forward(request, response);

@@ -4,18 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>메인화면</title>
-	<script>
-		'use strict';
-		
-		function logout() {
-			let ans = confirm("로그아웃 하시겠습니까?");
-			if(ans){
-				alert("${mid}님 로그아웃 되었습니다.");
-				location.href="<%=request.getContextPath()%>/study/0427_storage/e1_Login.jsp";
-			}
-		}
-	</script>
+	<title>t5_StorageTest.jsp</title>
 	<%@ include file = "/include/bs4.jsp" %>
 </head>
 <body>
@@ -23,9 +12,13 @@
 <jsp:include page="/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-	<h2>회원방</h2>
-	<p>${mid}님 안녕하세요!</p>
-	<p><input type="button" value="로그아웃" onclick="logout()" class="btn btn-warning" />
+	<h2>서블릿에서 세션/어플리케이션 처리하기</h2>
+	<p>
+		<a href="<%=request.getContextPath()%>/j0427/T05_StorageTestOk?mid=admin" class="btn btn-success">서버스토리지 처리</a>
+		<a href="${pageContext.request.contextPath}/j0427/T05_StorageTestClear" class="btn btn-danger">서버스토리지 삭제</a>
+	</p>
+	<hr/>
+	<p>세션 아이디: ${sMid}</p>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp"/>
