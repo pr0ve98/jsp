@@ -1,7 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style>
+		@font-face {
+		     font-family: 'DungGeunMo';
+		     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+		     font-weight: normal;
+		     font-style: normal;
+		}
     	html {
             cursor: url(<%=request.getContextPath() %>/images/치이카와.cur), auto;
+            font-family: 'DungGeunMo';
         }
         .container{
             display: grid;
@@ -9,7 +16,7 @@
                 'header header'
                 'side content'
                 'footer footer';
-            grid-template-rows: 150px 1fr 100px;
+            grid-template-rows: 50px 1fr 50px;
             grid-template-columns: 30% 70%;
         }
         .item {
@@ -19,6 +26,11 @@
             padding: 0px;
             margin: 0 auto;
             background-image: url(<%=request.getContextPath() %>/images/bg.gif);
+        }
+        .loginBtn {
+        	width: 50px;
+        	height: 20px;
+        	float:right;
         }
         .sbody {
             margin: 0 auto;
@@ -34,7 +46,14 @@
             margin-top: 50px;
             grid-area: content;
             width: 80%;
+            height: 630px;
+            font-family: 'DungGeunMo';
+            font-size: 1rem;
         }
+		.main-content {
+		    height: 600px;
+		    overflow-y: auto;
+		}
         ul li {
             padding: 4px;
             font-size: 9pt;

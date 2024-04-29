@@ -5,21 +5,44 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%@ include file = "/include/window98.jsp" %>
 	<title>t02.jsp</title>
-	<%@ include file = "/include/bs4.jsp" %>
+    <%@ include file = "/include/98css.jsp" %>
 </head>
 <body>
-<%@ include file = "/include/header.jsp" %>
-<%@ include file = "/include/nav.jsp" %>
-<p><br/></p>
-<div class="container">
-	<h2>성적계산하기</h2>
-	<hr/>
-	<div><a href="t02_1.jsp" class="btn btn-success mb-3">방법 1(Servlet)</a></div>
-	<div><a href="t02_2.jsp" class="btn btn-info mb-3">방법 2(JSP)</a></div>
-	<div><a href="t02_3.jsp" class="btn btn-primary">방법 3(JSP)</a></div>
-</div>
-<p><br/></p>
-<%@ include file = "/include/footer.jsp" %>
+    <div class="container">
+        <section>
+            <div class="item header"></div>
+        </section>
+    	<%@ include file = "/include/login.jsp" %>
+        <section class="item sbody">
+            <%@ include file = "/include/profile.jsp" %>
+            <%@ include file = "/include/menu.jsp" %>
+        </section>
+        <div class="window main">
+            <div class="title-bar">
+                <div class="title-bar-text">성적 계산</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body main-content">
+                <div class="field-row-stacked">
+                	<div style="text-align:center; margin:50px; padding:20px; font-size:20pt;">
+						<h2>성적계산하기</h2>
+						<hr/>
+						<div><a href="t02_1.jsp">방법 1(Servlet)</a></div>
+						<div><a href="t02_2.jsp">방법 2(JSP)</a></div>
+						<div><a href="t02_3.jsp">방법 3(JSP)</a></div>
+					</div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="item footer"></div>
+        </section>
+    </div>
 </body>
 </html>

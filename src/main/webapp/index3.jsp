@@ -14,6 +14,7 @@
         <section>
             <div class="item header"></div>
         </section>
+		<%@ include file = "/include/login.jsp" %>
         <section class="item sbody">
             <%@ include file = "/include/profile.jsp" %>
             <%@ include file = "/include/menu.jsp" %>
@@ -29,7 +30,7 @@
             </div>
             <div class="window-body">
                 <div class="field-row-stacked">
-                    <img width="100%" src="images/4.jpg" />
+                
                 </div>
             </div>
         </div>
