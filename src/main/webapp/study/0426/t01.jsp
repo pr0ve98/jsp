@@ -13,6 +13,11 @@
 	<%@ include file = "/include/window98.jsp" %>
 	<title>t01.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
+    <style>
+    	.main {
+			height: 450px;
+		}
+    </style>
     </head>
 <body>
     <div class="container">
@@ -35,7 +40,7 @@
             </div>
             <div class="window-body main-content">
                 <div class="field-row-stacked">
-                	<div style="text-align:center; margin:50px; padding:20px;">
+                	<div class="text-center">
 	                	<h2>서버의 환경변수값 확인하기</h2>
 						<hr/><br/>
 						<div>호스트IP1: ${hostIp}</div>

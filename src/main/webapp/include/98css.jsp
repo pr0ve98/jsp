@@ -6,6 +6,15 @@
 		     font-weight: normal;
 		     font-style: normal;
 		}
+		.text-center{
+			text-align:center!important
+		}
+		.text-left{
+			text-align:left!important
+		}
+		.text-right{
+			text-align:right!important
+		}
     	html {
             cursor: url(<%=request.getContextPath() %>/images/치이카와.cur), auto;
             font-family: 'DungGeunMo';
@@ -49,6 +58,7 @@
             height: 630px;
             font-family: 'DungGeunMo';
             font-size: 1rem;
+            text-align: center;
         }
 		.main-content {
 		    height: 600px;
@@ -65,7 +75,7 @@
             width: 60px;
         }
         .sub {
-            width: 100px;
+            width: 60%;
             font-size: 1em;
             cursor: pointer;
         }
@@ -73,7 +83,7 @@
             width: 40%;
             margin-left: 40%;
         }
-        p {
+        #pp {
             display: flex;
             align-items: center;
             font-size: 1.1em;

@@ -8,6 +8,11 @@
 	<%@ include file = "/include/window98.jsp" %>
 	<title>t02.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
+    <style>
+    	.main {
+			height: 300px;
+		}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -30,7 +35,7 @@
             </div>
             <div class="window-body main-content">
                 <div class="field-row-stacked">
-                	<div style="text-align:center; margin:50px; padding:20px; font-size:20pt;">
+                	<div class="text-center" style="font-size:20pt;">
 						<h2>성적계산하기</h2>
 						<hr/>
 						<div><a href="t02_1.jsp">방법 1(Servlet)</a></div>

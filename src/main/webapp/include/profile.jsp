@@ -13,7 +13,7 @@
                 <div class="field-row-stacker">
                     <img src="<%=request.getContextPath() %>/images/profile.png" />
                     <br/>
-                    <p>
+                    <p id="pp">
                         <img src="<%=request.getContextPath() %>/images/star.png" style="width: 10%;" />
                         <b><%=mid2 %></b>
                     </p>

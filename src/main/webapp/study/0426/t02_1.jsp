@@ -8,12 +8,13 @@
 	<title>t02.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
     <style>
-		.window-body {
+		.main {
 			position: relative;
+			height: 470px;
 		}
 		form {
 			position: absolute;
-			top: 50%;
+			top: 55%;
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
@@ -40,7 +41,7 @@
             </div>
             <div class="window-body main-content">
                 <div class="field-row-stacked">
-                	<div style="margin:50px; padding:20px; text-align:center;">
+                	<div>
 						<h2>성적 자료</h2>
 						<form name="myform" method="post" action="<%=request.getContextPath()%>/j0426/T02Ok">
 							<p>성명: <input type="text" name="name" value="홍길동" class="form-control" autofocus/></p>

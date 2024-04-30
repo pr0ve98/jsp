@@ -13,37 +13,76 @@
     pageContext.setAttribute("check", check);
 %>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>login.jsp</title>
-	<%@ include file = "/include/bs4.jsp" %>
-	<style type="text/css">
-		.main{
-			width:30%;
-			margin: 0 auto;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ include file = "/include/window98.jsp" %>
+    <title>Hanna's Homepage</title>
+    <%@ include file = "/include/98css.jsp" %>
+      <style>
+		.window-body {
+			position: relative;
 		}
-	</style>
+		form {
+			position: absolute;
+			top: 160%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+		#mid #pwd {
+			width: 500px;
+		}
+		.main {
+			height: 350px;
+		}
+    </style>
 </head>
 <body>
-<jsp:include page="/include/header.jsp"/>
-<jsp:include page="/include/nav.jsp"/>
-<p><br/></p>
-<div class="container text-center">
-	<h2>로그인</h2>
-	<div class="main">
-		<form name="myform" method="post" action="${pageContext.request.contextPath}/j0427/LoginOk">
-			<p><input type="text" name="mid" value="${saveMid}" placeholder="아이디를 입력하세요" class="form-control mt-3 mb-3" required autofocus /></p>
-			<p><input type="password" name="pwd" placeholder="비밀번호를 입력하세요" class="form-control mt-3 mb-3" required /></p>
-			<p>
-				<input type="checkbox" name="idSave" value="저장" ${check} /> 아이디 저장&nbsp;&nbsp;&nbsp;
-				<input type="submit" value="로그인" class="btn btn-primary" />
-			</p>
-		</form>
-	</div>
-</div>
-<p><br/></p>
-<jsp:include page="/include/footer.jsp"/>
+    <div class="container">
+        <section>
+            <div class="item header"></div>
+        </section>
+		<%@ include file = "/include/login.jsp" %>
+        <section class="item sbody">
+            <%@ include file = "/include/profile.jsp" %>
+            <%@ include file = "/include/menu.jsp" %>
+        </section>
+        <div class="window main">
+            <div class="title-bar">
+                <div class="title-bar-text">Login</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body">
+                <div class="field-row-stacked">
+						<div>
+                			<h2>로그인</h2>
+							<form name="myform" method="post" action="${pageContext.request.contextPath}/j0427/LoginOk">
+								<div class="field-row-stacked" style="width: 200px">
+								  <label for="mid">ID</label>
+								  <input type="text" name="mid" id="mid" value="${saveMid}" placeholder="아이디를 입력하세요" required autofocus />
+								</div>
+								<div class="field-row-stacked" style="width: 200px">
+								  <label for="pwd">Password</label>
+								  <input type="password" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요" required />
+								</div>
+								<p>
+									<input type="checkbox" name="idSave" id="idSave" value="저장" ${check} />
+									<label for="idSave">아이디 저장&nbsp;&nbsp;&nbsp;</label>
+									<input type="submit" value="로그인" />
+								</p>
+							</form>
+						</div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="item footer"></div>
+        </section>
+    	</div>
 </body>
 </html>

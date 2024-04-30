@@ -43,7 +43,7 @@
 						<p>평균: ${vo.avg} / ${param.avg}</p>
 						<p>학점: ${vo.grade} / ${param.grade}</p>
 						<hr/>
-						<p><a href="<%=request.getContextPath() %>/study/0426/t02.jsp" class="btn btn-warning">돌아가기</a></p>
+						<p><a href="<%=request.getContextPath() %>/study/0426/t02.jsp">돌아가기</a></p>
 					</div>
                 </div>
             </div>
