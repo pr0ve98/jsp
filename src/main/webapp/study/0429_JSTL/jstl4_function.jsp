@@ -136,7 +136,9 @@
 		문자 'o'앞의 문자열을 출력? ${fn:substringBefore(str, "o")}<br/>
 		문자 'o'뒤의 문자열을 출력? ${fn:substringAfter(str, "o")}<br/>
 		~~~ 2번째 'o'의 위치값 출력 ~~~<br/>
-		
+		<c:set var="str2" value="${fn:substringAfter(str, 'o')}"/>
+		<c:set var="str3" value="${fn:substringBefore(str, 'o')}"/>
+		<div>2번째 'o'의 위치값은? ${fn:indexOf(str2, 'o')+1+fn:length(str3)}</div>
 		<hr/>
 		6. 문자열 분리(split(변수, 분리할문자)): 문자열 분리 후에는 분리된 문자들이 모두 변수에 담아줘야 한다. 즉, 이 변수는 배열이 된다.<br/>
 		예) str변수안의 문자열 중에서 'o'를 기준으로 분리해서 출력하시오?<br/>

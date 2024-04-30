@@ -153,16 +153,23 @@
 		<c:if test="${st.last}"><span style="background-color:skyblue;">${card}</span></c:if>
 		<c:if test="${!st.first && !st.last}"> ${card} </c:if>
 	</c:forEach>
-	
+	<br/><br/>
 	
 	<h5>9.앞의 사용법2번에 저장한 cards의 내용 중 '국민카드'는 파란색, '삼성카드'는 빨간색, 첫번째 카드의 배경색은 노란색, 마지막 카드의 배경색은 스카이블루</h5>
 	<c:forEach var="card" items="${cards}" varStatus="st">
-		<c:if test="${st.first}"><span style="background-color:yellow;">${card}</span></c:if>
-		<c:if test="${st.last}"><span style="background-color:skyblue;">${card}</span></c:if>
-		<c:if test="${!st.first && !st.last}"> 
-		
-		${card} 
+		<c:if test="${st.first}">
+			<c:if test="${card == '국민'}"><span style="background-color:yellow;color:blue;">${card}</span></c:if>
+			<c:if test="${card == '삼성'}"><span style="background-color:yellow;color:red;">${card}</span></c:if>
+			<c:if test="${card != '국민' && card != '삼성'}"><span style="background-color:yellow;">${card}</span></c:if>
 		</c:if>
+		<c:if test="${st.last}">
+			<c:if test="${card == '국민'}"><span style="background-color:skyblue;color:blue;">${card}</span></c:if>
+			<c:if test="${card == '삼성'}"><span style="background-color:skyblue;color:red;">${card}</span></c:if>
+			<c:if test="${card != '국민' && card != '삼성'}"><span style="background-color:skyblue;">${card}</span></c:if>
+		</c:if>
+		<c:if test="${!st.first && !st.last && card == '국민'}"><span style="color:blue;">${card}</span></c:if>
+		<c:if test="${!st.first && !st.last && card == '삼성'}"><span style="color:red;">${card}</span></c:if>
+		<c:if test="${!st.first && !st.last && card != '국민' && card != '삼성'}"> ${card} </c:if>
 	</c:forEach>
 </div>
 <p><br/></p>
