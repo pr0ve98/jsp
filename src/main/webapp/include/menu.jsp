@@ -27,6 +27,9 @@
                 <li class="sub"><a href="<%=request.getContextPath()%>/study/0429_JSTL/el1.jsp">EL연습</a></li>
                 <li class="sub"><a href="<%=request.getContextPath()%>/study/0429_JSTL/jstl1.jsp?jumsu=88&code=S">JSTL연습</a></li>
                 <li class="sub"><a href="<%=request.getContextPath()%>/study/0430_web_xml/filter/t1_Filter.jsp">필터한글연습</a></li>
+                <li class="sub"><a href="<%=request.getContextPath()%>/study/0430_web_xml/filter/t2_Certification.jsp">인증코드발행(관리자)</a></li>
+                <li class="sub"><a href="<%=request.getContextPath()%>/study/0430_web_xml/init/t03_init.jsp">공통변수 확인</a></li>
+                <li class="sub"><a href="<%=request.getContextPath()%>/study/database/LoginList">데이터베이스연습</a></li>
             </ul>
         </details>
        <%} %>

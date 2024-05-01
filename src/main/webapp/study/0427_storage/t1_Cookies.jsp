@@ -5,24 +5,50 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%@ include file = "/include/window98.jsp" %>
 	<title>t1_Cookies.jsp</title>
-	<%@ include file = "/include/bs4.jsp" %>
-</head>
+    <%@ include file = "/include/98css.jsp" %>
+    <style>
+    	.main {
+			height: 200px;
+		}
+    </style>
+    </head>
 <body>
-<jsp:include page="/include/header.jsp"/>
-<jsp:include page="/include/nav.jsp"/>
-<p><br/></p>
-<div class="container">
-	<h2>쿠키연습 메인메뉴</h2>
-	<hr/>
-	<div class="row">
-		<div><a href="t1_CookiesSave.jsp" class="btn btn-success mr-3">쿠키저장</a></div>
-		<div><a href="t1_CookiesCheck.jsp" class="btn btn-primary mr-3">쿠키확인</a></div>
-		<div><a href="t1_CookiesAllDelete.jsp" class="btn btn-danger mr-3">전체쿠키삭제</a></div>
-		<div><a href="t1_CookiesPwdDelete.jsp" class="btn btn-warning mr-3">비밀번호 쿠키삭제</a></div>
-	</div>
-</div>
-<p><br/></p>
-<jsp:include page="/include/footer.jsp"/>
+    <div class="container">
+        <section>
+            <div class="item header"></div>
+        </section>
+        <%@ include file = "/include/login.jsp" %>
+        <section class="item sbody">
+            <%@ include file = "/include/profile.jsp" %>
+            <%@ include file = "/include/menu.jsp" %>
+        </section>
+        <div class="window main">
+            <div class="title-bar">
+                <div class="title-bar-text">쿠키 연습</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body main-content">
+                <div class="field-row-stacked">
+                	<div class="text-center">
+					<h2>쿠키연습 메인메뉴</h2>
+					<hr/>
+					<button onclick="location.href='t1_CookiesSave.jsp'">쿠키저장</button>
+					<button onclick="location.href='t1_CookiesCheck.jsp'">쿠키확인</button>
+					<button onclick="location.href='t1_CookiesAllDelete.jsp'">전체쿠키삭제</button>
+					<button onclick="location.href='t1_CookiesPwdDelete.jsp'">비밀번호 쿠키삭제</button>
+					</div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="item footer"></div>
+        </section>
+    </div>
 </body>
 </html>

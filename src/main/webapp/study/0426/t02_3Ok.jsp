@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file = "/include/certification.jsp" %>
 <%
 	request.setCharacterEncoding("utf-8");
 %>
@@ -10,9 +11,15 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<%@ include file = "/include/window98.jsp" %>
 	<title>t02_3Ok.jsp</title>
-	<%@ include file = "/include/bs4.jsp" %>
-	<%-- <jsp:setProperty property="name" name="vo" value="홍길동" /> 변수명이 같으면 value를 생략 가능 --%>
+    <%@ include file = "/include/98css.jsp" %>
+    <style>
+    	.main {
+			height: 550px;
+		}
+    </style>
+    <%-- <jsp:setProperty property="name" name="vo" value="홍길동" /> 변수명이 같으면 value를 생략 가능 --%>
 <%-- 	<jsp:setProperty property="name" name="vo" />
 	<jsp:setProperty property="hakbun" name="vo" />
 	<jsp:setProperty property="kor" name="vo" />
@@ -23,24 +30,46 @@
 	<jsp:setProperty property="*" name="vo" />
 </head>
 <body>
-<jsp:include page="/include/header.jsp"/>
-<jsp:include page="/include/nav.jsp"/>
-<p><br/></p>
-<div class="container">
-	<h2>넘어온 값들</h2>
-	<hr/>
-	<p>접속아이피: <jsp:getProperty property="hostIp" name="vo"/></p>
-	<p>성명: <jsp:getProperty property="name" name="vo"/></p>
-	<p>학번: <jsp:getProperty property="hakbun" name="vo"/></p>
-	<p>국어: <jsp:getProperty property="kor" name="vo"/></p>
-	<p>영어: <jsp:getProperty property="eng" name="vo"/></p>
-	<p>수학: <jsp:getProperty property="mat" name="vo"/></p>
-	<p>사회: <jsp:getProperty property="soc" name="vo"/></p>
-	<p>과학: <jsp:getProperty property="sci" name="vo"/></p>
-	<hr/>
-	<p><a href="t02.jsp" class="btn btn-warning">돌아가기</a></p>
-</div>
-<p><br/></p>
-<jsp:include page="/include/footer.jsp"/>
+    <div class="container">
+        <section>
+            <div class="item header"></div>
+        </section>
+        <%@ include file = "/include/login.jsp" %>
+        <section class="item sbody">
+            <%@ include file = "/include/profile.jsp" %>
+            <%@ include file = "/include/menu.jsp" %>
+        </section>
+        <div class="window main">
+            <div class="title-bar">
+                <div class="title-bar-text">성적 결과</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body main-content">
+                <div class="field-row-stacked">
+                	<div style="display: flex; flex-direction: column; align-items: center;">
+						<h2>넘어온 값들</h2>
+						<hr/>
+						<p>접속아이피: <jsp:getProperty property="hostIp" name="vo"/></p>
+						<p>성명: <jsp:getProperty property="name" name="vo"/></p>
+						<p>학번: <jsp:getProperty property="hakbun" name="vo"/></p>
+						<p>국어: <jsp:getProperty property="kor" name="vo"/></p>
+						<p>영어: <jsp:getProperty property="eng" name="vo"/></p>
+						<p>수학: <jsp:getProperty property="mat" name="vo"/></p>
+						<p>사회: <jsp:getProperty property="soc" name="vo"/></p>
+						<p>과학: <jsp:getProperty property="sci" name="vo"/></p>
+						<hr/>
+						<button onclick="location.href='t02.jsp'">돌아가기</button>
+					</div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="item footer"></div>
+        </section>
+    </div>
 </body>
 </html>

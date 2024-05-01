@@ -25,7 +25,7 @@
                 'header header'
                 'side content'
                 'footer footer';
-            grid-template-rows: 50px 1fr 50px;
+            grid-template-rows: 150px 1fr 50px;
             grid-template-columns: 30% 70%;
         }
         .item {
@@ -55,15 +55,15 @@
             margin-top: 50px;
             grid-area: content;
             width: 80%;
-            height: 630px;
+            /*height: 630px;*/
             font-family: 'DungGeunMo';
             font-size: 1rem;
             text-align: center;
         }
-		.main-content {
+		/*.main-content {
 		    height: 600px;
 		    overflow-y: auto;
-		}
+		}*/
         ul li {
             padding: 4px;
             font-size: 9pt;

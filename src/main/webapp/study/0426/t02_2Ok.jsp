@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ include file = "/include/certification.jsp" %>
 <%
 	request.setCharacterEncoding("utf-8");
 %>
@@ -59,7 +60,7 @@
 						<p>사회: <jsp:getProperty property="soc" name="vo"/></p>
 						<p>과학: <jsp:getProperty property="sci" name="vo"/></p>
 						<hr/>
-						<p><a href="t02.jsp">돌아가기</a></p>
+						<button onclick="location.href='t02.jsp'">돌아가기</button>
 					</div>
                 </div>
             </div>

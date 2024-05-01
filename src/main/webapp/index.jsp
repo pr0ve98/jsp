@@ -8,6 +8,11 @@
     <%@ include file = "/include/window98.jsp" %>
     <title>Hanna's Homepage</title>
     <%@ include file = "/include/98css.jsp" %>
+    <style>
+    	.main {
+    		height: auto;
+    	}
+    </style>
 </head>
 <body>
     <div class="container">
@@ -30,7 +35,7 @@
             </div>
             <div class="window-body">
                 <div class="field-row-stacked">
-                
+                	<img src="<%=request.getContextPath() %>/images/4.jpg" />
                 </div>
             </div>
         </div>
