@@ -17,10 +17,10 @@ public class FilterTest implements Filter {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		/* System.out.println("1. 필터 수행 전입니다."); */
+		//System.out.println("1. 필터 수행 전입니다."); 
 		
 		chain.doFilter(request, response); // 아무것도 안 거르겠다
 		
-		/* System.out.println("2. 필터 수행 후입니다."); */
+		//System.out.println("2. 필터 수행 후입니다.\n"); 
 	}
 }

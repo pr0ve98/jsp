@@ -2,16 +2,18 @@
 <%
 	String mid_ = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <%-- <a class="navbar-brand" href="<%=request.getContextPath()%>/">Home</a> --%>
-  <a class="navbar-brand" href="http://192.168.50.66:9090/javaclass/">Home</a>
+  <a class="navbar-brand" href="http://192.168.50.66:9090/javaclass/Main">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">Guest</a>
+        <a class="nav-link" href="${ctp}/GuestList">Guest</a>
       </li>
       <%if(!mid_.equals("")) { %>
       <li class="nav-item">
@@ -39,6 +41,7 @@
 		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/0430_web_xml/filter/t1_Filter.jsp">필터한글연습</a>
 		      <%-- <a class="dropdown-item" href="<%=request.getContextPath()%>/study/0430_web_xml/filter/t2_Certification.jsp">인증코드발행(관리자)</a> --%>
 		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/0430_web_xml/init/t03_init.jsp">공통변수확인</a>
+		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/0430_web_xml/lifeCycle/lifeCycle2.jsp">서블릿생명주기</a>
 		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/database/LoginList">데이터베이스연습</a>
 		    </div>
 		 </div>

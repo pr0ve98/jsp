@@ -26,7 +26,7 @@
                 'side content'
                 'footer footer';
             grid-template-rows: 150px 1fr 50px;
-            grid-template-columns: 30% 70%;
+            grid-template-columns: 28% 72%;
         }
         .item {
             padding: 50px;
@@ -60,10 +60,6 @@
             font-size: 1rem;
             text-align: center;
         }
-		/*.main-content {
-		    height: 600px;
-		    overflow-y: auto;
-		}*/
         ul li {
             padding: 4px;
             font-size: 9pt;
@@ -72,7 +68,7 @@
         summary {
             padding: 4px;
             font-size: 9pt;
-            width: 60px;
+            width: 100px;
         }
         .sub {
             width: 60%;
@@ -92,6 +88,9 @@
         .window-body img {
             max-width: 100%;
             max-height: 100%;
+        }
+        .mobileLogin {
+        	display: none;
         }
         /* 아이패드 프로 */
         @media screen and (min-width:1024px) and (max-width:1199px) {
@@ -128,7 +127,7 @@
                 'side'
                 'content'
                 'footer';
-            grid-template-rows: 0px 1fr;
+            grid-template-rows: 30px 1fr;
             grid-template-columns: 100%;
             }
             .sbody {
@@ -149,5 +148,13 @@
                 margin-left: 40%;
                 display: none;
             }
+            .login {display:none;}
+            .mobileLogin {
+            	display: flex;
+            	position: absolute;
+				right: 0;
+				bottom: 100;
+        	}
+        	.mBtn {width: 16px; height: 15px;}
         }
     </style>

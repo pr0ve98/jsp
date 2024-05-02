@@ -9,6 +9,25 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>loginMain.jsp</title>
 	<%@ include file = "/include/bs4.jsp" %>
+	<script>
+		'use strict';
+	
+		function nameSearch() {
+			let name = document.getElementById("name").value;
+			
+			if(name.trim() == "") {
+				alert("검색할 성명을 입력하세요.");
+				document.getElementById("name").focus();
+				return false;
+			}
+			
+			location.href = "${ctp}/database/LoginSearch?name="+name;
+		}
+		
+		function loginList() {
+			location.href = "${ctp}/study/database/LoginList";
+		}
+	</script>
 </head>
 <body>
 <jsp:include page="/include/header.jsp"/>
@@ -17,6 +36,9 @@
 <div class="container">
 	<h2 class="text-center">회 원 메 인 방</h2>
 	<hr/>
+	<div>
+		<input type="button" value="전체조회" onclick="loginList()" class="btn btn-success btn-sm mb-2" />
+	</div>
 	<table class="table table-hover text-center">
 		<tr class="table-dark text-dark">
 			<th>번호</th>
@@ -30,7 +52,7 @@
 			<tr>
 				<td>${vo.idx}</td>
 				<td>${vo.mid}</td>
-				<td>${vo.name}</td>
+				<td><a href="${ctp}/study/database/LoginView?idx=${vo.idx}">${vo.name}</a></td>
 				<td>${vo.age}</td>
 				<td>${vo.gender}</td>
 				<td>${vo.address}</td>
@@ -39,9 +61,11 @@
 		<tr><td colspan="6" class="m-0 p-0"></td></tr>
 	</table>
 	<hr/>
-	<p>
-		<a href="${ctp}/database/Search" class="btn btn-warning">개별조회</a>
-	</p>
+	<div class="input-group">
+		<div class="input-group-prepend"><span class="input-group-text">성 명</span></div>
+		<input type="text" name="name" id="name" class="form-control" />
+		<button type="button" onclick="nameSearch()" class="input-group-append btn btn-warning">개별조회</button>
+	</div>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp"/>
