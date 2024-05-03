@@ -36,7 +36,7 @@
 					<p>
 					<%
 						Cookie[] cookies = request.getCookies();
-						out.println("<br/>저장된 쿠키는?<br/>");
+						out.println("<br/>저장된 쿠키는?<br/><br/>");
 						for(int i=0; i<cookies.length; i++){
 							out.println("쿠키명: "+cookies[i].getName()+" , ");
 							out.println("쿠키값: "+cookies[i].getValue()+" , ");

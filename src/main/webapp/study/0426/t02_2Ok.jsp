@@ -14,11 +14,6 @@
 	<%@ include file = "/include/window98.jsp" %>
 	<title>t02_2Ok.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
-    <style>
-    	.main {
-			height: 510px;
-		}
-    </style>
     <%-- <jsp:setProperty property="name" name="vo" value="홍길동" /> 변수명이 같으면 value를 생략 가능 --%>
 	<jsp:setProperty property="name" name="vo" />
 	<jsp:setProperty property="hakbun" name="vo" />

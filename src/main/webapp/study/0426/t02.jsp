@@ -8,11 +8,6 @@
 	<%@ include file = "/include/window98.jsp" %>
 	<title>t02.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
-    <style>
-    	.main {
-			height: 300px;
-		}
-    </style>
 </head>
 <body>
     <div class="container">

@@ -8,18 +8,6 @@
 	<%@ include file = "/include/window98.jsp" %>
 	<title>t02.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
-    <style>
-		.main {
-			position: relative;
-			height: 470px;
-		}
-		form {
-			position: absolute;
-			top: 55%;
-			left: 50%;
-			transform: translate(-50%, -50%);
-		}
-    </style>
 </head>
 <body>
     <div class="container">

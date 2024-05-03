@@ -239,4 +239,40 @@ public class LoginDAO {
 			pstmtClose();
 		}
 	}
+
+	// 회원 정보 정렬해서 보기
+	public ArrayList<LoginVO> getLoginSortList(String val) {
+		ArrayList<LoginVO> vos = new ArrayList<LoginVO>();
+		sql = "select * from hoewon order by ";
+		
+		switch(val) {
+			case "idx" : sql+="idx"; break;
+			case "idxDesc" : sql+="idx desc"; break;
+			case "name" : sql+="name"; break;
+			case "nameDesc" : sql+="name desc"; break;
+			case "age" : sql+="age"; break;
+			case "ageDesc" : sql+="age desc"; break;
+		}
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo = new LoginVO();
+				vo.setIdx(rs.getInt("idx"));
+				vo.setMid(rs.getString("mid"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setName(rs.getString("name"));
+				vo.setAge(rs.getInt("age"));
+				vo.setGender(rs.getString("gender"));
+				vo.setAddress(rs.getString("address"));
+				vos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 "+e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return vos;
+	}
 }

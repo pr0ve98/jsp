@@ -86,9 +86,6 @@
         <section>
             <div class="footer"></div>
         </section>
-		<div class="mobileLogin">
-			<%@ include file = "/include/mobileLogin.jsp" %>
-        </div>
     </div>
 </body>
 </html>

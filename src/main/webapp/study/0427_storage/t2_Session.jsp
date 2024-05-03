@@ -9,46 +9,100 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>t2_Session.jsp</title>
-	<%@ include file = "/include/bs4.jsp" %>
-</head>
+	<%@ include file = "/include/window98.jsp" %>
+	<title>t1_CookiesCheck.jsp</title>
+    <%@ include file = "/include/98css.jsp" %>
+    <style type="text/css">
+    	table{
+    		width: 100%;
+    		height: 200px;
+    		margin-left: auto;
+    		margin-right: auto;
+    		font-size: 14px;
+    	}
+    	th, td {
+    		border: 1px solid gray;
+    	}
+    	@media screen and (min-width:768px) and (max-width:1023px) {
+    		table{
+	    		font-size: 10px;
+    		}
+    	}
+    	@media screen and (max-width:767px) {
+    		table{
+	    		font-size: 7px;
+    		}
+    	}
+    </style>
+    </head>
 <body>
-<jsp:include page="/include/header.jsp"/>
-<jsp:include page="/include/nav.jsp"/>
-<p><br/></p>
-<div class="container">
-	<h2>세션연습 메인메뉴</h2>
-	<hr/>
-	<form name="myform" method="post" action="t2_SessionSave.jsp">
-		<table class="table table-bordered text-center">
-			<tr>
-				<td colspan="2"><font size="5">로 그 인(세션아이디:${sId})</font></td>
-			</tr>
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" name="mid" value="${sMid}"  class="form-control" required autofocus /></td>
-			</tr>
-			<tr>
-				<th>닉네임</th>
-				<td><input type="text" name="nickName" value="${sNickName}" class="form-control" required /></td>
-			</tr>
-			<tr>
-				<th>성명</th>
-				<td><input type="text" name="name" value="${sName}" class="form-control" required /></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<button type="submit" class="btn btn-success mr-3">세션저장</button>
-					<a href="t2_SessionCheck.jsp" class="btn btn-primary mr-3">세션확인</a>
-					<a href="t2_SessionAllDelete.jsp" class="btn btn-danger mr-3">전체세션삭제</a>
-					<a href="t2_SessionDelete.jsp" class="btn btn-danger mr-3">개별세션삭제</a>
-				</td>
-			</tr>
-		</table>
-	</form>
-	<hr/>
-</div>
-<p><br/></p>
-<jsp:include page="/include/footer.jsp"/>
+    <div class="container">
+        <section>
+            <div class="item header"></div>
+        </section>
+        <div class="login">
+			<%@ include file = "/include/login.jsp" %>
+		</div>
+        <section class="item sbody">
+            <%@ include file = "/include/profile.jsp" %>
+            <%@ include file = "/include/menu.jsp" %>
+        </section>
+        <div class="window main">
+            <div class="title-bar">
+                <div class="title-bar-text">세션 연습</div>
+                <div class="title-bar-controls">
+                    <button aria-label="Minimize"></button>
+                    <button aria-label="Maximize"></button>
+                    <button aria-label="Close"></button>
+                </div>
+            </div>
+            <div class="window-body main-content">
+                <div class="field-row-stacked">
+                	<div class="text-center">
+						<h2>세션연습 메인메뉴</h2>
+						<hr/>
+						<form name="myform" method="post" action="t2_SessionSave.jsp">
+							<table class="text-center">
+								<tr>
+									<td colspan="2">로 그 인(세션아이디:${sId})</td>
+								</tr>
+								<tr>
+									<th>아이디</th>
+									<td><input type="text" name="mid" value="${sMid}"  class="form-control" required autofocus /></td>
+								</tr>
+								<tr>
+									<th>닉네임</th>
+									<td><input type="text" name="nickName" value="${sNickName}" class="form-control" required /></td>
+								</tr>
+								<tr>
+									<th>성명</th>
+									<td><input type="text" name="name" value="${sName}" class="form-control" required /></td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<button type="submit" class="mr-3">세션저장</button>
+										<button onclick="location.href='t2_SessionCheck.jsp'">세션확인</button>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										<button onclick="location.href='t2_SessionAllDelete.jsp'" class="mr-3">전체세션삭제</button>
+										<button onclick="location.href='t2_SessionDelete.jsp'">개별세션삭제</button>
+									</td>
+								</tr>
+							</table>
+						</form>
+						<hr/>
+					</div>
+                </div>
+            </div>
+        </div>
+        <section>
+            <div class="item footer"></div>
+        </section>
+        		<div class="mobileLogin">
+			<%@ include file = "/include/mobileLogin.jsp" %>
+        </div>
+    </div>
 </body>
 </html>

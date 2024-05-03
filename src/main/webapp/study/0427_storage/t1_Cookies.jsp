@@ -8,11 +8,6 @@
 	<%@ include file = "/include/window98.jsp" %>
 	<title>t1_Cookies.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
-    <style>
-    	.main {
-			height: 200px;
-		}
-    </style>
     </head>
 <body>
     <div class="container">
