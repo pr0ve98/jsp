@@ -12,7 +12,7 @@
             </div>
             <div class="window-body">
                 <div class="field-row-stacker">
-                    <img src="<%=request.getContextPath() %>/images/profile.png" />
+                    <img src="<%=request.getContextPath() %>/images/profile.png" class="profile-img" />
                     <br/>
                     <p id="pp">
                         <img src="<%=request.getContextPath() %>/images/star.png" style="width: 10%;" />

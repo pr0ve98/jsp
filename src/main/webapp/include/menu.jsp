@@ -17,7 +17,7 @@
       <li><a href="">PDS</a></li>
       <hr/>
       <details close>
-          <summary>Study1</summary>
+          <summary class="mb-2">Study1</summary>
           <ul>
               <li class="sub"><a href="<%=request.getContextPath()%>/study/0426/t01.jsp">서버환경</a></li>
               <li class="sub"><a href="<%=request.getContextPath()%>/study/0426/t02.jsp">성적계산</a></li>
@@ -33,6 +33,12 @@
                 <li class="sub"><a href="<%=request.getContextPath()%>/study/0430_web_xml/init/t03_init.jsp">공통변수 확인</a></li>
                 <li class="sub"><a href="<%=request.getContextPath()%>/study/0430_web_xml/lifeCycle/lifeCycle2.jsp">서블릿생명주기</a></li>
                 <li class="sub"><a href="<%=request.getContextPath()%>/study/database/LoginList">데이터베이스연습</a></li>
+            </ul>
+        </details>
+      <details close>
+          <summary>Study2</summary>
+          	<ul>
+               <li class="sub"><a href="<%=request.getContextPath()%>/study/password/passCheck.jsp">비밀번호 암호화</a></li>
             </ul>
         </details>
        <%} %>

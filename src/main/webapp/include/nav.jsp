@@ -22,7 +22,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">PDS</a>
       </li>    
-      <li class="nav-item">
+      <li class="nav-item mr-2">
         <!-- <a class="nav-link" href="#">Study</a> -->
         <div class="dropdown">
 		    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
@@ -43,6 +43,17 @@
 		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/0430_web_xml/init/t03_init.jsp">공통변수확인</a>
 		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/0430_web_xml/lifeCycle/lifeCycle2.jsp">서블릿생명주기</a>
 		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/database/LoginList">데이터베이스연습</a>
+		    </div>
+		 </div>
+      </li>
+      <li class="nav-item">
+        <!-- <a class="nav-link" href="#">Study</a> -->
+        <div class="dropdown">
+		    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+		      Study2
+		    </button>
+		    <div class="dropdown-menu">
+		      <a class="dropdown-item" href="<%=request.getContextPath()%>/study/password/passCheck.jsp">비밀번호 암호화</a>
 		    </div>
 		 </div>
       </li>

@@ -81,11 +81,13 @@ public class LoginDAO {
 	}
 
 	// 전체 회원 정보 검색
-	public ArrayList<LoginVO> getLoginList() {
+	public ArrayList<LoginVO> getLoginList(int startIndexNo, int pageSize, String val) {
 		ArrayList<LoginVO> vos = new ArrayList<LoginVO>();
 		try {
-			sql = "select * from hoewon order by name";
+			sql = "select * from hoewon order by "+val+" limit ?,?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startIndexNo);
+			pstmt.setInt(2, pageSize);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				vo = new LoginVO();
@@ -243,18 +245,8 @@ public class LoginDAO {
 	// 회원 정보 정렬해서 보기
 	public ArrayList<LoginVO> getLoginSortList(String val) {
 		ArrayList<LoginVO> vos = new ArrayList<LoginVO>();
-		sql = "select * from hoewon order by ";
-		
-		switch(val) {
-			case "idx" : sql+="idx"; break;
-			case "idxDesc" : sql+="idx desc"; break;
-			case "name" : sql+="name"; break;
-			case "nameDesc" : sql+="name desc"; break;
-			case "age" : sql+="age"; break;
-			case "ageDesc" : sql+="age desc"; break;
-		}
-		
 		try {
+			sql = "select * from hoewon order by "+val;
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
@@ -274,5 +266,22 @@ public class LoginDAO {
 			rsClose();
 		}
 		return vos;
+	}
+
+	// 전체 회원 건수
+	public int getTotalRecCnt() {
+		int totRecCnt = 0;
+		try {
+			sql = "select count(*) as cnt from hoewon";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			totRecCnt = rs.getInt("cnt");
+		} catch (SQLException e) {
+			System.out.println("sql 오류 "+e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return totRecCnt;
 	}
 }

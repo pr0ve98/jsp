@@ -20,6 +20,13 @@ public class GuestInputOk extends HttpServlet {
 		String content = request.getParameter("content")==null ? "" : request.getParameter("content");
 		String hostIp = request.getParameter("hostIp")==null ? "" : request.getParameter("hostIp");
 		
+		name= name.replace("<", "&lt;");
+		email= email.replace("<", "&lt;");
+		homePage= homePage.replace("<", "&lt;");
+		name= name.replace(">", "&gt;");
+		email= email.replace(">", "&gt;");
+		homePage= homePage.replace(">", "&gt;");
+		
 		GuestVO vo = new GuestVO();
 		vo.setName(name);
 		vo.setEmail(email);

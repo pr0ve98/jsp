@@ -33,7 +33,7 @@
                 	<div>
 						<h2>성적 자료</h2>
 						<form name="myform" method="post" action="<%=request.getContextPath()%>/study/0426/t02_3Ok.jsp">
-							<p>성명: <input type="text" name="name" value="홍길동" class="form-control" autofocus/></p>
+							<p>성명: <input type="text" name="name" value="홍길동" class="" autofocus/></p>
 							<p>학번: <input type="text" name="hakbun" value="MS1234" class="form-control"/></p>
 							<p>국어: <input type="text" name="kor" value="100" class="form-control"/></p>
 							<p>영어: <input type="text" name="eng" value="90" class="form-control"/></p>

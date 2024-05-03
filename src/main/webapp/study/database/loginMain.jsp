@@ -31,7 +31,7 @@
 		function optionChange() {
 			let val = document.getElementById("title").value;
 			if(val != null) {
-				location.href = "${ctp}/database/LoginListSort?val="+val;
+				location.href = "${ctp}/study/database/LoginList?val="+val;
 			}
 		}
 	</script>
@@ -41,25 +41,28 @@
 <jsp:include page="/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-	<c:choose>
-		<c:when test="${param.val == 'idx'}"><c:set var="sort" value="(가입 오름차순 정렬)"></c:set></c:when>
-		<c:when test="${param.val == 'idxDesc'}"><c:set var="sort" value="(가입 내림차순 정렬)"></c:set></c:when>
-		<c:when test="${param.val == 'name'}"><c:set var="sort" value="(성명 오름차순 정렬)"></c:set></c:when>
-		<c:when test="${param.val == 'nameDesc'}"><c:set var="sort" value="(성명 내림차순 정렬)"></c:set></c:when>
-		<c:when test="${param.val == 'age'}"><c:set var="sort" value="(나이 오름차순 정렬)"></c:set></c:when>
-		<c:when test="${param.val == 'ageDesc'}"><c:set var="sort" value="(나이 내림차순 정렬)"></c:set></c:when>
-	</c:choose>
-	<h2 class="text-center">회 원 메 인 방 ${sort}</h2>
+	<h2 class="text-center">회 원 메 인 방</h2>
 	<hr/>
-	<div>
+	<div class="text-right">
+		<c:if test="${pag > 1}">
+      		<a href="${ctp}/study/database/LoginList?pag=1&pageSize=${pageSize}" title="첫페이지">◁</a>
+      		<a href="${ctp}/study/database/LoginList?pag=${pag-1}&pageSize=${pageSize}" title="이전페이지">◀</a>
+      	</c:if>
+      	${pag}/${totPage}
+      	<c:if test="${pag < totPage}">
+      		<a href="${ctp}/study/database/LoginList?pag=${pag+1}&pageSize=${pageSize}" title="다음페이지">▶</a>
+      		<a href="${ctp}/study/database/LoginList?pag=${totPage}&pageSize=${pageSize}" title="마지막페이지">▷</a>
+      	</c:if>
+	</div>
+	<div class="text-right">
 		<select id="title" onchange="optionChange()">
 			<option value=null>선택</option>
 			<option value="idx">가입 오름차순</option>
-			<option value="idxDesc">가입 내림차순</option>
+			<option value="idx desc">가입 내림차순</option>
 			<option value="name">성명 오름차순</option>
-			<option value="nameDesc">성명 내림차순</option>
+			<option value="name desc">성명 내림차순</option>
 			<option value="age">나이 오름차순</option>
-			<option value="ageDesc">나이 내림차순</option>
+			<option value="age desc">나이 내림차순</option>
 		</select>
 		<input type="button" value="기본정렬" onclick="loginList()" class="btn btn-success btn-sm mb-2" />
 	</div>

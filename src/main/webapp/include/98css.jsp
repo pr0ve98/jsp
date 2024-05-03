@@ -17,6 +17,7 @@
 		}
     	html {
             cursor: url(<%=request.getContextPath() %>/images/치이카와.cur), auto;
+            font-size: 12pt!important;
             font-family: 'DungGeunMo';
         }
         .container{
@@ -32,6 +33,8 @@
             padding: 0px 50px;
         }
         body {
+            font-size: 12pt!important;
+            font-family: 'DungGeunMo';
             padding: 0px;
             margin: 0 auto;
             background-image: url(<%=request.getContextPath() %>/images/bg.gif);
@@ -57,6 +60,11 @@
             height: fit-content;
             font-family: 'DungGeunMo';
             text-align: center;
+        }
+        .form-center {
+        	margin: 0 auto;
+        	text-align: center;
+        	display: inline-block;
         }
 		.main-content {
 			padding: 0px 30px 30px;
@@ -86,7 +94,7 @@
             font-size: 1.1em;
             font-weight: bolder;
         }
-        .window-body img {
+		.profile-img {
             max-width: 100%;
             max-height: 100%;
         }
@@ -102,12 +110,21 @@
     		border: 1px solid gray;
     		padding:10px!important;
     	}
-    	.form-control {
-    		width: 100%;
-    	}
     	.guest-body-minimize {
     		display: none;
     	}
+    	#page-body {
+	    	padding: 0;
+    	}
+    	.pagination {
+    		padding: 20px;
+    		list-style: none;
+    		display: flex;
+    	}
+    	.form-control {width: 100%;}
+    	.page-item {width: fit-content;}
+    	.loginBtn {width: 70px;}
+		button,input[type=reset],input[type=submit]{border:none;border-radius:0;box-sizing:border-box;color:transparent;min-height:23px;min-width:5px;padding:0 12px;text-shadow:0 0 #222}
         .m-0{margin:0!important}.mt-0,.my-0{margin-top:0!important}.mr-0,.mx-0{margin-right:0!important}.mb-0,.my-0{margin-bottom:0!important}.ml-0,.mx-0{margin-left:0!important}.m-1{margin:.25rem!important}.mt-1,.my-1{margin-top:.25rem!important}.mr-1,.mx-1{margin-right:.25rem!important}.mb-1,.my-1{margin-bottom:.25rem!important}.ml-1,.mx-1{margin-left:.25rem!important}.m-2{margin:.5rem!important}.mt-2,.my-2{margin-top:.5rem!important}.mr-2,.mx-2{margin-right:.5rem!important}.mb-2,.my-2{margin-bottom:.5rem!important}.ml-2,.mx-2{margin-left:.5rem!important}.m-3{margin:1rem!important}.mt-3,.my-3{margin-top:1rem!important}.mr-3,.mx-3{margin-right:1rem!important}.mb-3,.my-3{margin-bottom:1rem!important}.ml-3,.mx-3{margin-left:1rem!important}.m-4{margin:1.5rem!important}.mt-4,.my-4{margin-top:1.5rem!important}.mr-4,.mx-4{margin-right:1.5rem!important}.mb-4,.my-4{margin-bottom:1.5rem!important}.ml-4,.mx-4{margin-left:1.5rem!important}.m-5{margin:3rem!important}.mt-5,.my-5{margin-top:3rem!important}.mr-5,.mx-5{margin-right:3rem!important}.mb-5,.my-5{margin-bottom:3rem!important}.ml-5,.mx-5{margin-left:3rem!important}
         /* 아이패드 프로 */
         @media screen and (min-width:1024px) and (max-width:1199px) {
