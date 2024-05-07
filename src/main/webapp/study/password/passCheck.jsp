@@ -48,17 +48,17 @@
                 </div>
             </div>
             <div class="window-body main-content">
-                <div class="field-row-stacked form-center">
+                <div class="field-row-stacked">
 						<div>
                 			<h2>비밀번호 암호화</h2>
                 			<pre>
 암호학에서는 솔트(salt)는 데이터, 비밀번호, 통과암호를 해시처리하는 단방향 함수의 추가 입력으로 사용되는 랜덤 데이터이다.
 솔트는 스토리지에서 비밀번호를 보호하기 위해 사용된다.
 솔트는 레인보우 테이블(rainbow table: 해시테이블)과 같은 미리 계산된 테이블을 사용하는 공격을 방어한다.
-                			</pre>
+</pre>
                 			<br/>
                 			<p id="tt">비밀번호를 10자 이내로 입력하세요.</p>
-							<form name="myform" method="post">
+							<form name="myform" method="post" class="form-center">
 								<div class="field-row-stacked" style="width: 200px">
 								  <label for="mid">ID</label>
 								  <input type="text" name="mid" id="mid" value="${sMid}" placeholder="아이디를 입력하세요" required autofocus />
@@ -75,7 +75,7 @@
 								<input type="hidden" name="idx" />
 							</form>
 							<br/>
-							<div id="tt">비밀번호를 전송후 콘솔창에서 암호화된 비밀번호를 확인하세요.</div>
+							<div id="main-font">비밀번호를 전송후 콘솔창에서 암호화된 비밀번호를 확인하세요.</div>
 						</div>
                 </div>
             </div>

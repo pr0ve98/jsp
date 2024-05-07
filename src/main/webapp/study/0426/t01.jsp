@@ -35,7 +35,7 @@
             </div>
             <div class="window-body main-content">
                 <div class="field-row-stacked">
-                	<div class="text-center">
+                	<div class="text-center" id="main-font">
 	                	<h2>서버의 환경변수값 확인하기</h2>
 						<hr/><br/>
 						<div>호스트IP1: ${hostIp}</div>

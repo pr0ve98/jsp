@@ -30,7 +30,7 @@
             </div>
             <div class="window-body main-content">
                 <div class="field-row-stacked">
-                	<div class="text-center">
+                	<div class="text-center" id="main-font">
 					<h2>저장된 쿠키 확인하기</h2>
 					<hr/>
 					<p>

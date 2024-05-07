@@ -30,7 +30,7 @@
             </div>
             <div class="window-body main-content">
                 <div class="field-row-stacked">
-                	<div style="display: flex; flex-direction: column; align-items: center;">
+                	<div id="main-font">
 						<h2>성적처리 결과</h2>
 						<hr/>
 						<p>성명: ${vo.name} / ${param.name}</p>

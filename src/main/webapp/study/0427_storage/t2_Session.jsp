@@ -12,28 +12,6 @@
 	<%@ include file = "/include/window98.jsp" %>
 	<title>t1_CookiesCheck.jsp</title>
     <%@ include file = "/include/98css.jsp" %>
-    <style type="text/css">
-    	table{
-    		width: 100%;
-    		height: 200px;
-    		margin-left: auto;
-    		margin-right: auto;
-    		font-size: 14px;
-    	}
-    	th, td {
-    		border: 1px solid gray;
-    	}
-    	@media screen and (min-width:768px) and (max-width:1023px) {
-    		table{
-	    		font-size: 10px;
-    		}
-    	}
-    	@media screen and (max-width:767px) {
-    		table{
-	    		font-size: 7px;
-    		}
-    	}
-    </style>
     </head>
 <body>
     <div class="container">
@@ -81,11 +59,7 @@
 								<tr>
 									<td colspan="2">
 										<button type="submit" class="mr-3">세션저장</button>
-										<button onclick="location.href='t2_SessionCheck.jsp'">세션확인</button>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2">
+										<button onclick="location.href='t2_SessionCheck.jsp'" class="mr-3">세션확인</button>
 										<button onclick="location.href='t2_SessionAllDelete.jsp'" class="mr-3">전체세션삭제</button>
 										<button onclick="location.href='t2_SessionDelete.jsp'">개별세션삭제</button>
 									</td>

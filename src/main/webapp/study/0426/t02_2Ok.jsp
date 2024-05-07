@@ -44,7 +44,7 @@
             </div>
             <div class="window-body main-content">
                 <div class="field-row-stacked">
-                	<div style="display: flex; flex-direction: column; align-items: center;">
+                	<div id="main-font">
 						<h2>넘어온 값들</h2>
 						<hr/>
 						<p>성명: <jsp:getProperty property="name" name="vo"/></p>

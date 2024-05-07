@@ -39,6 +39,11 @@
           <summary>Study2</summary>
           	<ul>
                <li class="sub"><a href="<%=request.getContextPath()%>/study/password/passCheck.jsp">비밀번호 암호화</a></li>
+               <li class="sub"><a href="${ctp}/mapping/test1">디렉토리 매핑연습</a></li>
+               <li class="sub"><a href="${ctp}/mapping/test2.do">확장자 매핑연습</a></li>
+               <li class="sub"><a href="${ctp}/mapping/test3.do3">확장자 매핑연습3</a></li>
+               <li class="sub"><a href="${ctp}/mapping/test4.do4">확장자 매핑연습4</a></li>
+               <li class="sub"><a href="${ctp}/mapping/test5.do5">확장자 매핑연습5</a></li>
             </ul>
         </details>
        <%} %>
