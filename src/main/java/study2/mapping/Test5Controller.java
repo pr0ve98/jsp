@@ -19,6 +19,9 @@ public class Test5Controller extends HttpServlet {
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/")+1, uri.lastIndexOf("."));
 		
+		String mid = request.getParameter("mid");
+		request.setAttribute("mid", mid);
+		
 		if(com.equals("test5")) {
 			viewPage += "test5.jsp";
 		}
@@ -41,6 +44,7 @@ public class Test5Controller extends HttpServlet {
 			viewPage = "/WEB-INF/common/message.jsp";
 		}
 		else if(com.equals("search")) viewPage += "t5_search.jsp";
+		else if(com.equals("searchOk")) viewPage += "t5_searchOk.jsp";
 		else if(com.equals("list")) viewPage += "t5_list.jsp";
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

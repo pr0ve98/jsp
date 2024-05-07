@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ include file = "/include/certification.jsp" %>
-<c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>t5_edit.jsp</title>
+	<title>t5_list.jsp</title>
 	<%@ include file = "/include/bs4.jsp" %>
 </head>
 <body>
@@ -15,15 +14,15 @@
 <jsp:include page="/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-	<h2>회원 정보 수정</h2>
-	<hr/>
-	<form name="myform" method="post" action="editOk.do5">
-		<div>
-			<input type="text" name="mid" placeholder="수정할 아이디를 입력하세요" class="form-control mb-3" autofocus required />
-			<input type="text" placeholder="수정할 내용을 입력하세요" class="form-control mb-3" autofocus required />
-			<input type="submit" value="수정" class="btn btn-success" />
-		</div>
-	</form>
+	<h2>회원 리스트</h2>
+	<pre>
+ 	회원...
+ 	리스트...
+ 	...
+ 	...
+ 	...
+	</pre>
+	<a href="test5.do5" class="btn btn-warning">돌아가기</a>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp"/>

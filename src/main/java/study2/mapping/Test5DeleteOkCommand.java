@@ -10,7 +10,8 @@ public class Test5DeleteOkCommand implements Test5Interface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String message = "회원정보를 삭제했습니다.";
+		String mid = (String)request.getAttribute("mid");
+		String message = mid+"님의 회원정보를 삭제했습니다.";
 		request.setAttribute("message", message);
 		request.setAttribute("url", "test5.do5");
 	}
