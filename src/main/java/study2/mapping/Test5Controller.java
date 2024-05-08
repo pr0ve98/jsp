@@ -29,19 +29,19 @@ public class Test5Controller extends HttpServlet {
 		else if(com.equals("joinOk")) {
 			command = new Test5JoinOkCommand();
 			command.execute(request, response);
-			viewPage = "/WEB-INF/common/message.jsp";
+			viewPage = "/include/message.jsp";
 		}
 		else if(com.equals("edit")) viewPage += "t5_edit.jsp";
 		else if(com.equals("editOk")) {
 			command = new Test5EditOkCommand();
 			command.execute(request, response);
-			viewPage = "/WEB-INF/common/message.jsp";
+			viewPage = "/include/message.jsp";
 		}
 		else if(com.equals("delete")) viewPage += "t5_delete.jsp";
 		else if(com.equals("deleteOk")) {
 			command = new Test5DeleteOkCommand();
 			command.execute(request, response);
-			viewPage = "/WEB-INF/common/message.jsp";
+			viewPage = "/include/message.jsp";
 		}
 		else if(com.equals("search")) viewPage += "t5_search.jsp";
 		else if(com.equals("searchOk")) viewPage += "t5_searchOk.jsp";

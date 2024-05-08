@@ -44,6 +44,9 @@
                <li class="sub"><a href="${ctp}/mapping/test3.do3">확장자 매핑연습3</a></li>
                <li class="sub"><a href="${ctp}/mapping/test4.do4">확장자 매핑연습4</a></li>
                <li class="sub"><a href="${ctp}/mapping/test5.do5">확장자 매핑연습5</a></li>
+               <li class="sub"><a href="${ctp}/ajaxTest1.st">AJAX연습(일반)</a></li>
+               <li class="sub"><a href="${ctp}/ajaxTest2.st">AJAX연습(응용)</a></li>
+               <li class="sub"><a href="${ctp}/ajaxTest3.st">AJAX연습(회원관리)</a></li>
             </ul>
         </details>
        <%} %>
