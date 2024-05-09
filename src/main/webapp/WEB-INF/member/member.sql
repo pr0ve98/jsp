@@ -34,3 +34,5 @@ desc member;
 insert into member values (default, 'admin', '1234','대장님','관리자','여자',default,'010-1234-5678','27348/서울시/땡땡아파트/117동/103호','admin@atom.com','http://www.atom.com','학생','등산',default,'관리자입니다.',default,default,default,default,default,default,default,default);
 
 select * from member;
+
+drop table member;

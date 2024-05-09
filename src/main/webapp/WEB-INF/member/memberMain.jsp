@@ -22,7 +22,7 @@
 	<div>
 		<p>현재 <font color="blue"><b>${sNickName}</b></font>님이 로그인 중입니다.</p>
 		<p>총 방문횟수 _회 / 오늘 방문횟수 _회</p>
-		<p>총 보유 포인트 _점</p>
+		<p>총 보유 포인트 ${sPoint}점</p>
 	</div>
 	<hr/>
 	<div>

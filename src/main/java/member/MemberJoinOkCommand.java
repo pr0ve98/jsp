@@ -1,6 +1,7 @@
 package member;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -49,14 +50,17 @@ public class MemberJoinOkCommand implements MemberInterface {
 		}
 		
 		// 비밀번호 암호화(SHA256) - salt키를 만든 후 암호화 시켜준다(uuid 코드 중 앞자리 8자리와 같이 병행처리 후 암호화)
+		UUID uid = UUID.randomUUID();
+		String salt = uid.toString().substring(0,8);
+		
 		SecurityUtil security = new SecurityUtil();
 		pwd = security.encryptSHA256(pwd);
 		
 		// 모든 체크가 끝난 자료는 vo에 담아서 DB에 저장처리한다.
 		vo = new MemberVO();
 		vo.setMid(mid);
-		//vo.setPwd(salt + pwd);
-		vo.setPwd(pwd);
+		vo.setPwd(salt + pwd);
+		//vo.setPwd(pwd);
 		vo.setNickName(nickName);
 		vo.setName(name);
 		vo.setGender(gender);

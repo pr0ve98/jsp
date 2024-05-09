@@ -10,6 +10,9 @@
   <jsp:include page="/include/bs4.jsp" />
   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
   <script src="${ctp}/js/woo.js"></script>
+  <style>
+  	.error {color:red; font-size:12px;}
+  </style>
   <script>
     'use strict';
     
@@ -19,8 +22,6 @@
     function fCheck() {
     	// 유효성 검사.....
     	// 아이디,닉네임,성명,이메일,홈페이지,전화번호,비밀번호 등등....
-    	
-    	// 정규식을 이용한 유효성 검사처리
     	
     	// 검사를 끝내고 필요한 내역들을 변수에 담아 회원가입처리한다.
     	
@@ -39,7 +40,64 @@
     	let extraAddress = myform.extraAddress.value + " ";
     	let address = postcode + "/" + roadAddress + "/" + detailAddress + "/" + extraAddress;
     	
-    	if(idCheckSw == 0){
+    	// 정규식을 이용한 유효성 검사처리
+    	let pwd = myform.pwd.value.trim();
+    	let pwdReg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&^])[A-Za-z\d@$!%*#?&^]{8,16}$/;
+    	
+    	let name = myform.name.value.trim();
+    	let nameReg = /^[가-힣]{2,4}$/;
+		
+    	let emailReg = /^[a-zA-Z0-9-_]{4,12}$/;
+    	let tel2Reg = /^[\d]{3,4}$/;
+    	let tel3Reg = /^[\d]{4,4}$/;
+    	
+    	let homePage = myform.homePage.value.trim();
+    	let homePageReg = /^https?:\/\/(.+)?\.([a-zA-Z]+)?\/?([\?#].*)?$/;
+    	
+    	if(!pwdReg.test(pwd)){
+    		document.getElementById("hidden-pwd-msg").style.display = "block";
+    		myform.pwd.value = "";
+			myform.pwd.focus();
+    	}
+    	else if(!nameReg.test(name)){
+    		document.getElementById("hidden-pwd-msg").style.display = "none";
+    		document.getElementById("hidden-name-msg").style.display = "block";
+    		myform.name.value = "";
+			myform.name.focus();
+    	}
+    	else if(!emailReg.test(email1)){
+    		document.getElementById("hidden-pwd-msg").style.display = "none";
+    		document.getElementById("hidden-name-msg").style.display = "none";
+    		document.getElementById("hidden-email-msg").style.display = "block";
+    		myform.email1.value = "";
+			myform.email1.focus();
+    	}
+    	else if(!tel2Reg.test(tel2)){
+    		document.getElementById("hidden-pwd-msg").style.display = "none";
+    		document.getElementById("hidden-name-msg").style.display = "none";
+    		document.getElementById("hidden-email-msg").style.display = "none";
+    		document.getElementById("hidden-tel-msg").style.display = "block";
+    		myform.tel2.value = "";
+			myform.tel2.focus();
+    	}
+    	else if(!tel3Reg.test(tel3)){
+    		document.getElementById("hidden-pwd-msg").style.display = "none";
+    		document.getElementById("hidden-name-msg").style.display = "none";
+    		document.getElementById("hidden-email-msg").style.display = "none";
+    		document.getElementById("hidden-tel-msg").style.display = "block";
+    		myform.tel3.value = "";
+			myform.tel3.focus();
+    	}
+    	else if(!homePageReg.test(homePage)){
+    		document.getElementById("hidden-pwd-msg").style.display = "none";
+    		document.getElementById("hidden-name-msg").style.display = "none";
+    		document.getElementById("hidden-email-msg").style.display = "none";
+    		document.getElementById("hidden-tel-msg").style.display = "none";
+    		document.getElementById("hidden-homePage-msg").style.display = "block";
+    		myform.homePage.value = "";
+			myform.homePage.focus();
+    	}
+    	else if(idCheckSw == 0){
     		alert("아이디 중복체크를 해주세요!");
     		document.getElementById("midBtn").focus();
     	}
@@ -48,9 +106,12 @@
     		document.getElementById("nickNameBtn").focus();
     	}
     	else {
+    		document.getElementById("hidden-homePage-msg").style.display = "none";
     		myform.email.value = email;
     		myform.tel.value = tel;
     		myform.address.value = address;
+    		$("#mid").removeAttr("disabled");
+    		$("#nickName").removeAttr("disabled");
     		
     		myform.submit();
     	}
@@ -59,11 +120,19 @@
     // 아이디 중복체크
     function idCheck() {
 		let mid = myform.mid.value;
+    	let midReg = /^[a-zA-Z0-9-_]{4,12}$/;
+    	
 		if(mid.trim() == ""){
 			alert("아이디를 입력하세요!");
 			myform.mid.focus();
 		}
+		else if(!midReg.test(mid)){
+    		document.getElementById("hidden-mid-msg").style.display = "block";
+    		myform.mid.value = "";
+			myform.mid.focus();
+    	}
 		else {
+    		document.getElementById("hidden-mid-msg").style.display = "none";
 			$.ajax({
 				url : "${ctp}/MemberIdCheck.mem",
 				type : "get",
@@ -92,11 +161,19 @@
     // 닉네임 중복체크
         function nickCheck() {
 		let nickName = myform.nickName.value;
+    	let nickNameReg = /^[a-zA-Z가-힣0-9]{1,8}$/;
+    	
 		if(nickName.trim() == ""){
 			alert("닉네임을 입력하세요!");
 			myform.nickName.focus();
 		}
+		else if(!nickNameReg.test(nickName)){
+    		document.getElementById("hidden-nickName-msg").style.display = "block";
+    		myform.nickName.value = "";
+			myform.nickName.focus();
+    	}
 		else {
+    		document.getElementById("hidden-nickName-msg").style.display = "none";
 			$.ajax({
 				url : "${ctp}/MemberNickCheck.mem",
 				type : "get",
@@ -123,12 +200,13 @@
 	}
     
     // 다시작성 눌렀을 때 버튼 활성화
-    function reset() {
-		$("#nickName").attr("disabled", false);
-		$("#nickNameBtn").attr("disabled", false);
-		$("#mid").attr("disabled", false);
-		$("#midBtn").attr("disabled", false);
+    function resetForm() {
+		$("#nickName").removeAttr("disabled");
+		$("#nickNameBtn").removeAttr("disabled");
+		$("#mid").removeAttr("disabled");
+		$("#midBtn").removeAttr("disabled");
 		myform.reset();
+		$("#mid").focus();
 	}
   </script>
 </head>
@@ -142,19 +220,23 @@
     <br/>
     <div class="form-group">
       <label for="mid">아이디 : &nbsp; &nbsp;<input type="button" value="아이디 중복체크" id="midBtn" class="btn btn-secondary btn-sm" onclick="idCheck()"/></label>
-      <input type="text" class="form-control" name="mid" id="mid" placeholder="아이디를 입력하세요." required autofocus/>
+      <input type="text" class="form-control" name="mid" id="mid" placeholder="아이디를 입력하세요." minlength="4" maxlength="12" required autofocus/>
+      <div id="hidden-mid-msg" class="error" style="display:none;">※아이디는 4~12자로 영문 대/소문자와 숫자, '-', '_'만 사용 가능합니다!</div>
     </div>
     <div class="form-group">
       <label for="pwd">비밀번호 :</label>
-      <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요." name="pwd" required />
+      <input type="password" class="form-control" id="pwd" placeholder="비밀번호를 입력하세요." name="pwd" minlength="8" maxlength="16" required />
+      <div id="hidden-pwd-msg" class="error" style="display:none;">※비밀번호는 8~16자로 영문 대/소문자와 숫자, 특수문자를 하나씩은 가져야 합니다!</div>
     </div>
     <div class="form-group">
       <label for="nickName">닉네임 : &nbsp; &nbsp;<input type="button" id="nickNameBtn" value="닉네임 중복체크" class="btn btn-secondary btn-sm" onclick="nickCheck()"/></label>
-      <input type="text" class="form-control" id="nickName" placeholder="별명을 입력하세요." name="nickName" required />
+      <input type="text" class="form-control" id="nickName" placeholder="별명을 입력하세요." minlength="2" maxlength="8" name="nickName" required />
+      <div id="hidden-nickName-msg" class="error" style="display:none;">※닉네임은 1~8자로 영문 대/소문자와 숫자, 한글만 가능합니다!</div>
     </div>
     <div class="form-group">
       <label for="name">성명 :</label>
       <input type="text" class="form-control" id="name" placeholder="성명을 입력하세요." name="name" required />
+      <div id="hidden-name-msg" class="error" style="display:none;">※성명은 2~4자 한글로만 입력하세요!</div>
     </div>
     <div class="form-group">
       <label for="email1">Email address:</label>
@@ -171,6 +253,7 @@
             </select>
           </div>
         </div>
+      	<div id="hidden-email-msg" class="error" style="display:none;">※이메일 형식에 적합하지 않습니다!</div>
     </div>
     <div class="form-group">
       <div class="form-check-inline">
@@ -195,21 +278,22 @@
           <span class="input-group-text">전화번호 :</span> &nbsp;&nbsp;
             <select name="tel1" class="custom-select">
               <option value="010" selected>010</option>
-              <option value="02">서울</option>
-              <option value="031">경기</option>
-              <option value="032">인천</option>
-              <option value="041">충남</option>
-              <option value="042">대전</option>
-              <option value="043">충북</option>
-              <option value="051">부산</option>
-              <option value="052">울산</option>
-              <option value="061">전북</option>
-              <option value="062">광주</option>
-            </select>-
+              <option value="02">02</option>
+              <option value="031">031</option>
+              <option value="032">032</option>
+              <option value="041">041</option>
+              <option value="042">042</option>
+              <option value="043">043</option>
+              <option value="051">051</option>
+              <option value="052">052</option>
+              <option value="061">061</option>
+              <option value="062">062</option>
+            </select> - 
         </div>
-        <input type="text" name="tel2" size=4 maxlength=4 class="form-control"/>-
-        <input type="text" name="tel3" size=4 maxlength=4 class="form-control"/>
+        <input type="text" name="tel2" size=4 minlength="3" maxlength=4 class="form-control"/> - 
+        <input type="text" name="tel3" size=4 minlength="4" maxlength=4 class="form-control"/>
       </div>
+      <div id="hidden-tel-msg" class="error" style="display:none;">※전화번호 형식에 적합하지 않습니다!</div>
     </div>
     <div class="form-group">
       <label for="address">주소</label>
@@ -230,6 +314,7 @@
     <div class="form-group">
       <label for="homepage">Homepage address:</label>
       <input type="text" class="form-control" name="homePage" value="http://" placeholder="홈페이지를 입력하세요." id="homePage"/>
+      <div id="hidden-homePage-msg" class="error" style="display:none;">※홈페이지 형식에 적합하지 않습니다!</div>
     </div>
     <div class="form-group">
       <label for="name">직업</label>
@@ -311,7 +396,7 @@
       <input type="file" name="fName" id="file" class="form-control-file border"/>
     </div>
     <button type="button" class="btn btn-secondary" onclick="fCheck()">회원가입</button> &nbsp;
-    <button type="button" class="btn btn-secondary" onclick="reset()">다시작성</button> &nbsp;
+    <button type="button" class="btn btn-secondary" onclick="resetForm()">다시작성</button> &nbsp;
     <button type="button" class="btn btn-secondary" onclick="location.href='${ctp}/MemberLogin.mem';">돌아가기</button>
     
     <input type="hidden" name="email" />
