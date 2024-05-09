@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
-	String mid1 = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
+	int level1 = session.getAttribute("sLevel")==null ? 999 : (int)session.getAttribute("sLevel");
+	pageContext.setAttribute("level", level1);
 %>
     	<div>
-    	<%if(!mid1.equals("")) { %>
-        <button class="loginBtn" onclick="location.href='${pageContext.request.contextPath}/database/Logout'">로그아웃</button>
-        <%} else { %>
-	    <button class="loginBtn" onclick="location.href='<%=request.getContextPath()%>/study/database/login.jsp'">로그인</button>
-	    <%} %>
+    	<c:if test="${level <= 4}"><button class="loginBtn" onclick="location.href='${pageContext.request.contextPath}/MemberLogout.mem'">로그아웃</button></c:if>
+        <c:if test="${level > 4}"><button class="loginBtn" onclick="location.href='<%=request.getContextPath()%>/MemberLogin.mem'">로그인</button></c:if>
         </div>

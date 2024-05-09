@@ -120,6 +120,8 @@
     		display: flex;
     		justify-content: center;
     	}
+    	pre {white-space: pre-wrap;}
+    	.window #tt{font-size:13px}
     	.form-control {width: 100%;}
     	.page-item {width: fit-content;}
     	.loginBtn {width: 70px;}

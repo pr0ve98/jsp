@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String mid_ = session.getAttribute("sMid")==null ? "" : (String)session.getAttribute("sMid");
+	int level = session.getAttribute("sLevel")==null ? 999 : (int)session.getAttribute("sLevel");
+	pageContext.setAttribute("level", level);
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
@@ -10,7 +11,7 @@
       <li><a href="http://192.168.50.66:9090/javaclass/Main">Home</a></li>
       <hr/>
       <li><a href="${ctp}/GuestList">Guest</a></li>
-      <%if(!mid_.equals("")) { %>
+      <c:if test="${level <= 4}">
       <hr/>
       <li><a href="">Board</a></li>
       <hr/>
@@ -47,8 +48,10 @@
                <li class="sub"><a href="${ctp}/ajaxTest1.st">AJAX연습(일반)</a></li>
                <li class="sub"><a href="${ctp}/ajaxTest2.st">AJAX연습(응용)</a></li>
                <li class="sub"><a href="${ctp}/ajaxTest3.st">AJAX연습(회원관리)</a></li>
+               <li class="sub"><a href="${ctp}/uuidForm.st">UUID연습</a></li>
+               <li class="sub"><a href="${ctp}/study/database/login.jsp">로그인연습</a></li>
             </ul>
         </details>
-       <%} %>
+       </c:if>
     </ul>
 </div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String name = session.getAttribute("sName")==null ? "손님" : (String)session.getAttribute("sName");
-	pageContext.setAttribute("name", name);
+	String nickName = session.getAttribute("sNickName")==null ? "손님" : (String)session.getAttribute("sNickName");
+	pageContext.setAttribute("nickName", nickName);
 %>
 <div class="window profile">
             <div class="title-bar">
@@ -16,7 +16,7 @@
                     <br/>
                     <p id="pp">
                         <img src="<%=request.getContextPath() %>/images/star.png" style="width: 10%;" />
-                        <b>&nbsp;${name}</b>
+                        <b>&nbsp;${nickName}</b>
                     </p>
                     안녕하세요
                     <br/><br/>
