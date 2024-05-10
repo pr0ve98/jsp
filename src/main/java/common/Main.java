@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.MemberDAO;
+import member.MemberVO;
 import study.database.LoginDAO;
 import study.database.LoginVO;
 
@@ -18,9 +20,9 @@ import study.database.LoginVO;
 public class Main extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoginDAO dao = new LoginDAO();
+		MemberDAO dao = new MemberDAO();
 		
-		ArrayList<LoginVO> recentVos = dao.getRecentFiveMember();
+		ArrayList<MemberVO> recentVos = dao.getRecentFiveMember();
 		
 		request.setAttribute("recentVos", recentVos);
 		

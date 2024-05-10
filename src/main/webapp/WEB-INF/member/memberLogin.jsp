@@ -37,7 +37,7 @@
 	<div class="main">
 		<form name="myform" method="post" action="${ctp}/MemberLoginOk.mem">
 			<p><input type="text" name="mid" value="${saveMid}" placeholder="아이디를 입력하세요" class="form-control mt-3 mb-3" required autofocus /></p>
-			<p><input type="password" name="pwd" value="1234" placeholder="비밀번호를 입력하세요" class="form-control mt-3 mb-3" required /></p>
+			<p><input type="password" name="pwd" value="qwer1234!" placeholder="비밀번호를 입력하세요" class="form-control mt-3 mb-3" required /></p>
 			<p>
 				<input type="checkbox" name="idSave" value="저장" ${check} /> 아이디 저장&nbsp;&nbsp;&nbsp;
 				<input type="submit" value="로그인" class="btn btn-primary" />

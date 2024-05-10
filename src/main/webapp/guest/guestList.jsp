@@ -72,9 +72,9 @@
 	                	<div class="text-left">
 							 <form name="myform" method="post" action="${ctp}/GuestInputOk">
 							  <div class="form-group">
-							    <label for="name">성명</label>
-							    <c:if test="${sName==null}"><c:set var="sName" value="익명"></c:set></c:if>
-							    <input type="text" class="form-control" id="name" value="${sName}" placeholder="성명을 입력하세요." name="name" required />
+							    <label for="name">닉네임</label>
+							    <c:if test="${sNickName==null}"><c:set var="sNickName" value="익명"></c:set></c:if>
+							    <input type="text" class="form-control" id="name" value="${sNickName}" name="name" required />
 							  </div>
 							  <div class="form-group">
 							    <label for="email">E-mail</label>
@@ -130,7 +130,7 @@
 		                <div class="title-bar-controls">
 		                    <button aria-label="Minimize"></button>
 		                    <button aria-label="Maximize"></button>
-		                    <c:if test="${sAdmin == 'OK' || sName == vo.name}"><button aria-label="Close" onclick="javascript:delCheck(${vo.idx})"></button></c:if>
+		                    <c:if test="${sLevel == 0 || sNickName == vo.name}"><button aria-label="Close" onclick="javascript:delCheck(${vo.idx})"></button></c:if>
 		                </div>
 		            </div>
 		            <div class="window-body main-content">
@@ -141,8 +141,13 @@
 								</table>
 								<table class="table table-bordered text-center">
 									<tr>
-										<th>성명</th>
-										<td>${vo.name}</td>
+										<th>닉네임</th>
+										<td>
+											<div style="display:flex; justify-content:center; align-item:center;">
+												<img src="${ctp}/images/star2.png" style="width: 23px;" />
+												<span>&nbsp;${vo.name}</span>
+											</div>
+										</td>
 										<th>작성시간</th>
 										<td>${fn:substring(vo.visitDate, 0, 19)}</td>
 									</tr>

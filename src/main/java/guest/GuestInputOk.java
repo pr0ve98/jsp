@@ -20,6 +20,7 @@ public class GuestInputOk extends HttpServlet {
 		String content = request.getParameter("content")==null ? "" : request.getParameter("content");
 		String hostIp = request.getParameter("hostIp")==null ? "" : request.getParameter("hostIp");
 		
+		// 작성폼에서 태그 사용 못하게 막기
 		name= name.replace("<", "&lt;");
 		email= email.replace("<", "&lt;");
 		homePage= homePage.replace("<", "&lt;");

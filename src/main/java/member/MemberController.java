@@ -66,6 +66,44 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/memberMain.jsp";
 		}
+		else if(com.equals("/MemberList")) {
+			command = new MemberListCommand();
+			command.execute(request, response);
+			viewPage += "/memberList.jsp";
+		}
+		else if(com.equals("/MemberSearch")) {
+			command = new MemberSearchCommand();
+			command.execute(request, response);
+			viewPage += "/memberSearch.jsp";
+		}
+		// 비밀번호 변경 or 회원정보 수정위한 현재 비밀번호 입력 view
+		else if(com.equals("/MemberPwdCheck")) {
+			viewPage += "/memberPwdCheck.jsp";
+		}
+		// 비밀번호 변경하기 위한 현재 비밀번호 매치 확인
+		else if(com.equals("/MemberPwdCheckAjax")) {
+			command = new MemberPwdCheckAjaxCommand();
+			command.execute(request, response);
+			return;
+		}
+		// 비밀번호 변경
+		else if(com.equals("/MemberPwdChangeCheck")) {
+			command = new MemberPwdChangeCheckCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		// 회원정보 수정하기 위한 현재 비밀번호 매치 확인
+		else if(com.equals("/MemberPwdCheckOk")) {
+			command = new MemberPwdCheckOkCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
+		// 회원정보 수정
+		else if(com.equals("/MemberUpdate")) {
+			command = new MemberUpdateCommand();
+			command.execute(request, response);
+			viewPage += "/memberUpdate.jsp";
+		}
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

@@ -20,14 +20,14 @@
 	<!-- 실시간 채팅방(DB) -->
 	<hr/>
 	<div>
-		<p>현재 <font color="blue"><b>${sNickName}</b></font>님이 로그인 중입니다.</p>
-		<p>총 방문횟수 _회 / 오늘 방문횟수 _회</p>
-		<p>총 보유 포인트 ${sPoint}점</p>
+		<p>현재 <font color="blue"><b>${sNickName}</b></font>(<font color="red">${sStrLevel}</font>)님이 로그인 중입니다.</p>
+		<p>총 방문횟수 <b>${mVo.visitCnt}</b>회 / 오늘 방문횟수 <b>${mVo.todayCnt}</b>회</p>
+		<p>총 보유 포인트 <b>${mVo.point}</b>점<c:if test="${mVo.todayCnt > 5}"> / (방문포인트 일일 최대한도 초과)</c:if></p>
 	</div>
 	<hr/>
 	<div>
 		<h5>활동 내역</h5>
-		<p>방명록에 올린 글 수: _건</p>
+		<p>방명록에 올린 글 수: <b>${guestCnt}</b>건</p>
 		<p>게시판에 올린 글 수: _건</p>
 		<p>자료실에 올린 글 수: _건</p>
 	</div>

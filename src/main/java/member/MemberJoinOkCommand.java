@@ -54,13 +54,13 @@ public class MemberJoinOkCommand implements MemberInterface {
 		String salt = uid.toString().substring(0,8);
 		
 		SecurityUtil security = new SecurityUtil();
-		pwd = security.encryptSHA256(pwd);
+		pwd = security.encryptSHA256(salt + pwd);
+		pwd = salt + pwd;
 		
 		// 모든 체크가 끝난 자료는 vo에 담아서 DB에 저장처리한다.
 		vo = new MemberVO();
 		vo.setMid(mid);
-		vo.setPwd(salt + pwd);
-		//vo.setPwd(pwd);
+		vo.setPwd(pwd);
 		vo.setNickName(nickName);
 		vo.setName(name);
 		vo.setGender(gender);
