@@ -49,7 +49,7 @@
     	let telReg3 = /^(?:\d{0}|(?:\d{4}))$/;
     	
     	let homePage = myform.homePage.value.trim();
-    	let homePageReg = /^https?:\/\/(.+)?\.([a-zA-Z]+)?\/?([\?#].*)?$/;
+    	let homePageReg = /^https?:\/\/(?:([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[\w-]+)*(?:[\?#].*)?)?$/;
     	
     	if(!nameReg.test(name)){
     		document.getElementById("hidden-name-msg").style.display = "block";
@@ -89,6 +89,20 @@
     		document.getElementById("nickNameBtn").focus();
     	}
     	else {
+        	if(tel2 == "" && tel3 == ""){
+        		tel2 = " ";
+        		tel3 = " ";
+        		tel = tel1 + '-' + tel2 + '-' + tel3;
+        	}
+        	else if(tel2 == ""){
+        		tel2 = " ";
+        		tel = tel1 + '-' + tel2 + '-' + tel3;
+        	}
+        	else if(tel3 == ""){
+        		tel3 = " ";
+        		tel = tel1 + '-' + tel2 + '-' + tel3;
+        	}
+        	
     		document.getElementById("hidden-name-msg").style.display = "none";
     		document.getElementById("hidden-email-msg").style.display = "none";
     		document.getElementById("hidden-tel-msg").style.display = "none";
@@ -111,6 +125,11 @@
 		if(nickName.trim() == ""){
 			alert("닉네임을 입력하세요!");
 			myform.nickName.focus();
+		}
+		else if(nickName == ('${sNickName}')) {
+			nickCheckSw = 1;
+			alert("현재 닉네임을 사용합니다.");
+			return false;
 		}
 		else if(!nickNameReg.test(nickName)){
     		document.getElementById("hidden-nickName-msg").style.display = "block";
@@ -158,7 +177,7 @@
 <jsp:include page="/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-  <form name="myform" method="post" action="${ctp}/MemberJoinOk.mem" class="was-validated">
+  <form name="myform" method="post" action="${ctp}/MemberUpdateOk.mem" class="was-validated">
     <h2>회 원 정 보 수 정</h2>
     <br/>
     <div class="form-group">
@@ -304,6 +323,8 @@
     <input type="hidden" name="email" />
     <input type="hidden" name="tel" />
     <input type="hidden" name="address" />
+    <input type="hidden" name="mid" value="${sMid}" />
+    <input type="hidden" name="photo" value="${vo.photo}" />
   </form>
 </div>
 <p><br/></p>

@@ -16,11 +16,11 @@
                     <img src="<%=request.getContextPath() %>/images/profile.png" class="profile-img" />
                     <br/>
 	                <p id="pp">
-	                    <c:if test="${sLevel == 0}"><img src="<%=request.getContextPath() %>/images/staradmin.png" style="width: 12%;" /></c:if>
+	                    <c:if test="${sLevel == 0}"><img src="<%=request.getContextPath() %>/images/star0.png" style="width: 12%;" /></c:if>
 	                    <c:if test="${sLevel == 1}"><img src="<%=request.getContextPath() %>/images/star1.png" style="width: 10%;" /></c:if>
 	                    <c:if test="${sLevel == 2}"><img src="<%=request.getContextPath() %>/images/star2.png" style="width: 10%;" /></c:if>
-	                    <c:if test="${sLevel == 3}"><img src="<%=request.getContextPath() %>/images/star2.png" style="width: 10%;" /></c:if>
-	                    <c:if test="${sLevel > 4 || sLevel == null}"><img src="<%=request.getContextPath() %>/images/star0.png" style="width: 10%;" /></c:if>
+	                    <c:if test="${sLevel == 3}"><img src="<%=request.getContextPath() %>/images/star3.png" style="width: 10%;" /></c:if>
+	                    <c:if test="${sLevel > 4 || sLevel == null}"><img src="<%=request.getContextPath() %>/images/star99.png" style="width: 10%;" /></c:if>
                         <b>&nbsp;${nickName}</b>
                     </p>
                     안녕하세요

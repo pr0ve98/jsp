@@ -52,7 +52,7 @@
     	let telReg3 = /^(?:\d{0}|(?:\d{4}))$/;
     	
     	let homePage = myform.homePage.value.trim();
-    	let homePageReg = /^https?:\/\/(.+)?\.([a-zA-Z]+)?\/?([\?#].*)?$/;
+    	let homePageReg = /^https?:\/\/(?:([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(?:\/[\w-]+)*(?:[\?#].*)?)?$/;
     	
     	if(!pwdReg.test(pwd)){
     		document.getElementById("hidden-pwd-msg").style.display = "block";
@@ -88,19 +88,6 @@
     		myform.tel3.value = "";
 			myform.tel3.focus();
     	}
-    	else if(tel2 == "" && tel3 == ""){
-    		tel2 = " ";
-    		tel3 = " ";
-    		tel = tel1 + '-' + tel2 + '-' + tel3;
-    	}
-    	else if(tel2 == ""){
-    		tel2 = " ";
-    		tel = tel1 + '-' + tel2 + '-' + tel3;
-    	}
-    	else if(tel3 == ""){
-    		tel3 = " ";
-    		tel = tel1 + '-' + tel2 + '-' + tel3;
-    	}
     	else if(!homePageReg.test(homePage)){
     		document.getElementById("hidden-pwd-msg").style.display = "none";
     		document.getElementById("hidden-name-msg").style.display = "none";
@@ -119,6 +106,20 @@
     		document.getElementById("nickNameBtn").focus();
     	}
     	else {
+        	if(tel2 == "" && tel3 == ""){
+        		tel2 = " ";
+        		tel3 = " ";
+        		tel = tel1 + '-' + tel2 + '-' + tel3;
+        	}
+        	else if(tel2 == ""){
+        		tel2 = " ";
+        		tel = tel1 + '-' + tel2 + '-' + tel3;
+        	}
+        	else if(tel3 == ""){
+        		tel3 = " ";
+        		tel = tel1 + '-' + tel2 + '-' + tel3;
+        	}
+        	
     		document.getElementById("hidden-pwd-msg").style.display = "none";
     		document.getElementById("hidden-name-msg").style.display = "none";
     		document.getElementById("hidden-email-msg").style.display = "none";
@@ -218,6 +219,14 @@
     
     // 다시작성 눌렀을 때 버튼 활성화
     function resetForm() {
+    	document.getElementById("hidden-mid-msg").style.display = "none";
+    	document.getElementById("hidden-nickName-msg").style.display = "none";
+		document.getElementById("hidden-pwd-msg").style.display = "none";
+		document.getElementById("hidden-name-msg").style.display = "none";
+		document.getElementById("hidden-email-msg").style.display = "none";
+		document.getElementById("hidden-tel-msg").style.display = "none";
+		document.getElementById("hidden-homePage-msg").style.display = "none";
+		
 		$("#nickName").removeAttr("disabled");
 		$("#nickNameBtn").removeAttr("disabled");
 		$("#mid").removeAttr("disabled");

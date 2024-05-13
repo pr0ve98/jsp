@@ -19,7 +19,7 @@
 					</c:if>
 					   	<li class="sub"><a href="MemberPwdCheck.mem">회원정보수정</a></li>
 						<li class="sub"><a href="MemberDelete.mem">회원탈퇴</a></li>
-					<c:if test="${level == 0}"><li class="sub"><a href="#">관리자메뉴</a></li></c:if>
+					<c:if test="${level == 0}"><li class="sub"><a href="AdminMain.ad">관리자메뉴</a></li></c:if>
 				</ul>
 			</details>
 		</ul>
@@ -31,7 +31,7 @@
 	  <li><a href="${ctp}/GuestList">Guest</a></li>
 	  <c:if test="${level <= 4}">
 	  <hr/>
-	  <li><a href="">Board</a></li>
+	  <li><a href="BoardList.bo">Board</a></li>
 	  </c:if>
 	  <c:if test="${level <= 4 && (level > 1 || level == 0)}">
 		<hr/>

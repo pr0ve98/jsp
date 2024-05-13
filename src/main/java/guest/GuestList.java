@@ -10,12 +10,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import member.MemberDAO;
+import member.MemberVO;
+
 @SuppressWarnings("serial")
 @WebServlet("/GuestList")
 public class GuestList extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		GuestDAO dao = new GuestDAO(); // 페이징 처리를 할 때는 dao를 먼저 선언
+		MemberDAO mDao = new MemberDAO();
 		
 		// 1. 현재 페이지번호를 구해온다.
 		int pag = request.getParameter("pag")==null ? 1 : Integer.parseInt(request.getParameter("pag"));
@@ -50,6 +54,10 @@ public class GuestList extends HttpServlet {
 		
 		// 한페이지에 표시할 건수만을(pageSize수만큼) DAO에서 가져온다.
 		ArrayList<GuestVO> vos = dao.getGuestList(startIndexNo, pageSize);
+		for(GuestVO vo : vos) {
+			MemberVO mVo = mDao.getMemberNickCheck(vo.getName());
+			vo.setLevel(mVo.getLevel());
+		}
 		
 		// 설정(지정)된 페이지의 모든 변수들을 view 페이지로 넘겨줄 준비를 한다.(나중엔 vo로 넘길것)
 		request.setAttribute("pag", pag);

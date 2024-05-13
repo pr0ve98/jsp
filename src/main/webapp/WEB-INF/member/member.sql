@@ -36,3 +36,5 @@ insert into member values (default, 'admin', '1234','대장님','관리자','여
 select * from member;
 
 drop table member;
+
+select lastDate, now(), timestampdiff(day, lastDate, now()) as deleteDiff from member;

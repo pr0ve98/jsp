@@ -74,7 +74,7 @@
 	                <div class="field-row-stacked">
 	           			<c:forEach var="vo" items="${recentVos}">
 	           			<p id="pp">
-	                        <img src="<%=request.getContextPath() %>/images/star.png" style="width: 10%;" />
+	                        <img src="<%=request.getContextPath() %>/images/star2.png" style="width: 10%;" />
 	                        <b>&nbsp;${fn:replace(vo.name, fn:substring(vo.name, 1, 2), '*')} 님</b>
                     	</p>
 			        	</c:forEach>
