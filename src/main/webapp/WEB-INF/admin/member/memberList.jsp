@@ -124,7 +124,7 @@
 					<c:if test="${vo.userDel == 'OK'}"><c:set var="active" value="탈퇴신청"/></c:if>
 					<c:if test="${vo.userDel != 'OK'}"><c:set var="active" value="활동중"/></c:if>
 					<tr>
-						<td><input type="checkbox"></td>
+						<td><input type="checkbox" name="check"></td>
 						<td>${vo.idx}</td>
 						<c:if test="${sLevel == 0}"><td><a href="MemberSearch.mem?mid=${vo.mid}">${vo.mid}</a></td></c:if>
 						<c:if test="${sLevel != 0}"><td>${vo.mid}</td></c:if>
