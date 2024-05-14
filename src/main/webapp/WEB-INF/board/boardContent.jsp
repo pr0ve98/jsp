@@ -154,14 +154,14 @@
 	<table class="table table-borderless">
 		<c:if test="${!empty nextVo.title}">
 		<tr>
-			<td>☝ 다음글&nbsp;&nbsp;<a href="BoardContent.bo?idx=${nextVo.idx}">${nextVo.title}</a></td>
+			<td>☝ 다음글&nbsp;&nbsp;<a href="BoardContent.bo?idx=${nextVo.idx}&pag=${pag}&pageSize=${pageSize}">${nextVo.title}</a></td>
 			<td class="text-right">${nextVo.nickName}</td>
 			<td class="text-right">${fn:substring(nextVo.wDate, 0, 10)}</td>
 		</tr>
 		</c:if>
 		<c:if test="${!empty preVo.title}">
 		<tr>
-			<td>👇 이전글&nbsp;&nbsp;<a href="BoardContent.bo?idx=${preVo.idx}">${preVo.title}</a></td>
+			<td>👇 이전글&nbsp;&nbsp;<a href="BoardContent.bo?idx=${preVo.idx}&pag=${pag}&pageSize=${pageSize}">${preVo.title}</a></td>
 			<td class="text-right">${preVo.nickName}</td>
 			<td class="text-right" style="width:120px">${fn:substring(preVo.wDate, 0, 10)}</td>
 		</tr>
