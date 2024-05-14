@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import admin.member.MemberDeleteOkCommand;
-import admin.member.MemberLevelChangeCommand;;
+import admin.member.MemberLevelChangeCommand;
+import board.BoardListCommand;;
 
 @SuppressWarnings("serial")
 @WebServlet("*.ad")
@@ -58,6 +59,16 @@ public class AdminController extends HttpServlet {
 			command = new MemberDeleteOkCommand();
 			command.execute(request, response);
 			return;
+		}
+		else if(com.equals("/BoardList")) {
+			command = new admin.board.BoardListCommand();
+			command.execute(request, response);
+			viewPage += "/board/boardList.jsp";
+		}
+		else if(com.equals("/BoardContent")) {
+			command = new admin.board.BoardContentCommand();
+			command.execute(request, response);
+			viewPage += "/board/boardContent.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

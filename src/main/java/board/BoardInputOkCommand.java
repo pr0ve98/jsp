@@ -20,6 +20,7 @@ public class BoardInputOkCommand implements BoardInterface {
 		BoardVO vo = new BoardVO();
 		vo.setMid(mid);
 		vo.setNickName(nickName);
+		title = title.replace("<", "&lt;").replace(">", "&gt;");
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setHostIp(hostIp);
@@ -29,7 +30,7 @@ public class BoardInputOkCommand implements BoardInterface {
 		int res = dao.setBoardInput(vo);
 		
 		if(res != 0) {
-			request.setAttribute("message", "게시글이 동록되었습니다.");
+			request.setAttribute("message", "게시글이 등록되었습니다.");
 			request.setAttribute("url", "BoardList.bo");
 		}
 		else {
