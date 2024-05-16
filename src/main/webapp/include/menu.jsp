@@ -70,6 +70,8 @@
 	             <li class="sub"><a href="${ctp}/ajaxTest3.st">AJAX연습(회원관리)</a></li>
 	             <li class="sub"><a href="${ctp}/uuidForm.st">UUID연습</a></li>
 	             <li class="sub"><a href="${ctp}/study/database/login.jsp">로그인연습</a></li>
+	             <li class="sub"><a href="Modal1.st">모달연습</a></li>
+	             <li class="sub"><a href="Modal2.st">모달연습2</a></li>
 	          </ul>
 	      </details>
 	    </c:if>

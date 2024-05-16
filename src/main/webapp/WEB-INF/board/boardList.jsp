@@ -16,6 +16,12 @@
 			let pageSize = $("#pageSize").val();
 			location.href = "BoardList.bo?pageSize="+pageSize;
 		}
+		function modalCheck(hostIp, mid, nickName, idx) {
+			$("#myModal #modalHostIp").text(hostIp);
+			$("#myModal #modalMid").text(mid);
+			$("#myModal #modalNickName").text(nickName);
+			$("#myModal #modalIdx").text(idx);
+		}
 	</script>
 	<style>
 		a:link {
@@ -71,15 +77,20 @@
 						<a href="BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a> 
 						<c:if test="${vo.hour_diff < 24}"><img src="${ctp}/images/new.gif" alt="새글" /></c:if>
 					</td>
-					<td>${vo.nickName}</td>
+					<td>
+						${vo.nickName}
+						<c:if test="${sLevel == 0}">
+							<a href="#" onclick="modalCheck('${vo.hostIp}','${vo.mid}','${vo.nickName}','${vo.idx}')" data-toggle="modal" data-target="#myModal" class="btn btn-warning btn-sm">회원정보</a>
+						</c:if>
+					</td>
 					<td>
 						<!-- 1일(24시간) 이내는 올린 날짜를 시간만 표시, 이후는 날짜와 시간을 표시 : 2024-05-14 10:43:52 -->
 						${vo.date_diff == 0 ? fn:substring(vo.wDate, 11, 16) : fn:substring(vo.wDate, 0, 10)}
 					</td>
 					<td>${vo.readNum}(${vo.good})</td>
 				</tr>
-			<c:set var="curScrStartNo" value="${curScrStartNo-1}"/>
 			</c:if>
+			<c:set var="curScrStartNo" value="${curScrStartNo-1}"/>
 		</c:forEach>
 		<tr><td colspan="5" class="m-0 p-0"></td></tr>
 	</table>
@@ -100,6 +111,33 @@
 	<!-- 블록페이지 끝 -->
 </div>
 <p><br/></p>
+  <!-- 모달에 회원정보 출력하기 -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+	      	고유번호: <span id="modalIdx"></span><br/>
+	      	아이피: <span id="modalHostIp"></span><br/>
+	      	아이디: <span id="modalMid"></span><br/>
+	      	닉네임: <span id="modalNickName"></span><br/>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 <jsp:include page="/include/footer.jsp"/>
 </body>
 </html>

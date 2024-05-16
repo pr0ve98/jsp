@@ -16,19 +16,14 @@ public class BoardListCommand implements AdminInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO dao = new BoardDAO();
 		
 		// 페이징처리 시작
 		int pag = request.getParameter("pag")==null ? 1 : Integer.parseInt(request.getParameter("pag"));
 		int pageSize = request.getParameter("pageSize")==null ? 10 : Integer.parseInt(request.getParameter("pageSize"));
-		int totRecCnt = dao.getTotalRecCnt();
-		int startIndexNo = Pagination.pageChange(pag, pageSize, totRecCnt, request, response);
-		// 페이징처리 끝
 		
-		ArrayList<BoardVO> vos = dao.getBoardList(startIndexNo, pageSize);
+		Pagination.pageChange(pag, pageSize, request, "board", "");
+		// 페이징처리 끝
 
-		request.setAttribute("totRecCnt", totRecCnt);
-		request.setAttribute("vos", vos);
 	}
 
 }

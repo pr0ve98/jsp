@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import admin.AdminDAO;
 import admin.AdminInterface;
 import board.BoardDAO;
 import board.BoardVO;
@@ -44,6 +45,7 @@ public class BoardContentCommand implements AdminInterface {
 		BoardVO nextVo = dao.getPreNextSearch(idx, "nextVo");
 		request.setAttribute("preVo", preVo);
 		request.setAttribute("nextVo", nextVo);
+		
 	}
 
 }

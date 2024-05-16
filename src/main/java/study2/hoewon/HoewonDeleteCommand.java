@@ -1,7 +1,6 @@
-package study2;
+package study2.hoewon;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -9,15 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import study.database.LoginDAO;
 import study.database.LoginVO;
+import study2.StudyInterface;
 
-public class HoewonMainCommand implements StudyInterface {
+public class HoewonDeleteCommand implements StudyInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LoginDAO dao = new LoginDAO();
+		int idx = request.getParameter("idx")==null ? 0 : Integer.parseInt(request.getParameter("idx"));
 		
-		ArrayList<LoginVO> vos = dao.getLoginAllList();
-		request.setAttribute("vos", vos);
+		LoginDAO dao = new LoginDAO();
+		LoginVO vo = dao.getLoginIdxSearch(idx);
+		dao.setLoginDelete(vo.getMid());
+		
+		response.getWriter().write("1");
 	}
 
 }
