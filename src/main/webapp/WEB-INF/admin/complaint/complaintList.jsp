@@ -52,7 +52,7 @@
 				<td>${vo.cpContent}</td>
 				<td>${vo.cpDate}</td>
 				<td>
-					<a href="javascript:complaintCheck('${vo.part}',${vo.partIdx}, '${vo.complaint}')">${vo.complaint == 'NO' ? '표시중' : '표시안함'}</a>
+					<a href="javascript:complaintCheck('${vo.part}',${vo.partIdx}, '${vo.complaint}')" class="badge badge-warning">${vo.complaint == 'NO' ? '게시중' : '숨김중'}</a>
 				</td>
 			</tr>
 			<c:set var="complaintCnt" value="${complaintCnt-1}"/>

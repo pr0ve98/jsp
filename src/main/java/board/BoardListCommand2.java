@@ -19,7 +19,7 @@ public class BoardListCommand2 implements BoardInterface {
 		int pag = request.getParameter("pag")==null ? 1 : Integer.parseInt(request.getParameter("pag"));
 		int pageSize = request.getParameter("pageSize")==null ? 10 : Integer.parseInt(request.getParameter("pageSize"));
 		String part = request.getParameter("part")==null ? "전체" : request.getParameter("part");
-		int totRecCnt = dao.getTotalRecCnt();
+		//int totRecCnt = dao.getTotalRecCnt();
 		//int startIndexNo = Pagination.pageChange(pag, pageSize, totRecCnt, request, part);
 //		int totPage = (totRecCnt % pageSize)==0 ? (totRecCnt / pageSize) : (totRecCnt / pageSize)+1;
 //		if(pag > totPage) pag = 1;
@@ -34,7 +34,7 @@ public class BoardListCommand2 implements BoardInterface {
 		
 		request.setAttribute("pag", pag);
 		request.setAttribute("pageSize", pageSize);
-		request.setAttribute("totRecCnt", totRecCnt);
+		//request.setAttribute("totRecCnt", totRecCnt);
 //		request.setAttribute("totPage", totPage);
 //		request.setAttribute("curScrStartNo", curScrStartNo);
 //		request.setAttribute("blockSize", blockSize);

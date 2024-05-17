@@ -130,6 +130,61 @@
 				}
 			});
 		}
+		
+		// 댓글 달기
+		function replyCheck() {
+			let content = $("#content").val();
+			if(content.trim() == "") {
+				alert("댓글을 입력하세요");
+				return false;
+			}
+
+			let query = {
+				boardIdx : ${vo.idx},
+				mid : '${sMid}',
+				nickName : '${sNickName}',
+				hostIp : '${pageContext.request.remoteAddr}',
+				content : content
+			}
+			
+			$.ajax({
+				url : "BoardReplyInput.bo",
+				type : "post",
+				data : query,
+				success : function(res) {
+					if(res != "0"){
+						alert("댓글이 작성되었습니다.");
+						location.reload();
+					}
+					else alert("댓글 작성 실패!");
+				},
+				error : function() {
+					alert("오류!!!!!");
+				}
+			});
+		}
+		
+		// 댓글 삭제
+		function replayDelete(idx) {
+			let ans = confirm("선택한 댓글을 삭제하시겠습니까?");
+			if(!ans) return false;
+			
+			$.ajax({
+				url : "BoardReplayDelete.bo",
+				type : "post",
+				data : {idx : idx},
+				success : function(res) {
+					if(res != "0"){
+						alert("댓글이 삭제되었습니다!");
+						location.reload();
+					}
+					else alert("삭제 실패!");
+				},
+				error : function() {
+					alert("오류남ㅋㅋ");
+				}
+			});
+		}
 	</script>
 	<style>
 		a:link {
@@ -183,7 +238,8 @@
 			<td colspan="4">
 				<div class="row">
 					<div class="col">
-						<input type="button" value="돌아가기" onclick="location.href='BoardList.bo?pag=${param.pag}&pageSize=${param.pageSize}';" class="btn btn-warning"/>
+						<c:if test="${empty flag}"><input type="button" value="돌아가기" onclick="location.href='BoardList.bo?pag=${pag}&pageSize=${pageSize}';" class="btn btn-warning"/></c:if>
+						<c:if test="${!empty flag}">21323423<input type="button" value="돌아가기" onclick="location.href='BoardSearchList.bo?search=${search}&searchString=${searchString}&pag=${param.pag}&pageSize=${param.pageSize}';" class="btn btn-warning"/></c:if>
 					</div>
 					<c:if test="${sNickName == vo.nickName || sLevel == 0}">
 						<div class="col text-right">
@@ -201,6 +257,46 @@
 			</td>
 		</tr>
 	</table>
+	<!-- 댓글 처리(리스트/입력) -->
+	<!-- 댓글리스트 -->
+	<table class="table table-hover text-center">
+		<tr>
+			<th>작성자</th>
+			<th>내용</th>
+			<th>작성시간</th>
+			<th>작성아이피</th>
+		</tr>
+		<c:forEach var="replyVo" items="${replyVos}" varStatus="st">
+			<tr>
+				<td>
+					${replyVo.nickName}
+					<c:if test="${sMid == replyVo.mid || sLevel == 0}">
+						<a href="javascript:replayDelete(${replyVo.idx})">❌</a>
+					</c:if>
+				</td>
+				<td>${fn:replace(replyVo.content, newLine, "<br/>")}</td>
+				<td>${fn:substring(replyVo.wDate, 0, 16)}</td>
+				<td>${replyVo.hostIp}</td>
+			</tr>
+		</c:forEach>
+		<tr><td colspan="4" class="p-0 m-0"></td></tr>
+	</table>
+	<!-- 댓글 입력창 -->
+	<form name="replyForm">
+		<table class="table table-center">
+			<tr>
+				<td style="width:85%" class="text-left">
+					작성자: ${sNickName}
+					<textarea rows="4" name="content" id="content" class="form-control"></textarea>
+				</td>
+				<td style="width:15%">
+					<br/>
+					<p><input type="button" value="작성" onclick="replyCheck()" class="btn btn-info btn-sm"/></p>
+				</td>
+			</tr>
+		</table> 
+	</form>
+	<!-- 댓글 처리 끝 -->
 	<hr/>
 	<!-- 이전글 다음글 출력하기 -->
 	<table class="table table-borderless">
@@ -219,6 +315,7 @@
 		</tr>
 		</c:if>
 	</table>
+	<!-- 이전글 다음글 출력하기 끝 -->
 </div>
 <p><br/></p>
 <!-- 신고하기 폼 모달 -->

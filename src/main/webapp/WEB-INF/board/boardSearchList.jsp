@@ -7,14 +7,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>boardList.jsp</title>
+	<title>boardSearchList.jsp</title>
 	<%@ include file = "/include/bs4.jsp" %>
 	<script>
 		'use strict';
 	
 		function pageSizeCheck() {
 			let pageSize = $("#pageSize").val();
-			location.href = "BoardList.bo?pageSize="+pageSize;
+			location.href = "BoardSearchList.bo?search=${search}&searchString=${searchString}&pageSize="+pageSize;
 		}
 		function modalCheck(hostIp, mid, nickName, idx) {
 			$("#myModal #modalHostIp").text(hostIp);
@@ -46,10 +46,12 @@
 <div class="container">
 	<table class="table table-borderless m-0 p-0">
 		<tr>
-			<td colspan="2"><h2 class="text-center">게 시 판 리 스 트</h2></td>
+			<td colspan="2">
+				<h2 class="text-center">게 시 판 검 색 결 과</h2>
+				<div class="text-center">(<span style="color:skyblue;"><b>${searchTitle}</b></span>로 <span style="color:skyblue;"><b>${searchString}</b></span>를 검색한 결과 <span style="color:red;"><b>${totRecCnt}</b></span>건의 자료가 검색되었습니다.)</div>
+			</td>
 		</tr>
 		<tr>
-			<td><c:if test="${sLevel != 1}"><a href="BoardInput.bo" class="btn btn-success btn-sm">글쓰기</a></c:if></td>
 			<td class="text-right">
 				<select name="pageSize" id="pageSize" onchange="pageSizeCheck()">
 					<option value="5" ${pageSize==5 ? "selected" : ""}>5개씩 보기</option>
@@ -74,9 +76,8 @@
 				<tr>
 					<td>${curScrStartNo}</td>
 					<td class="text-left">
-						<a href="BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a> 
+						<a href="BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}&flag=search&search=${search}&searchString=${searchString}">${vo.title}</a> 
 						<c:if test="${vo.hour_diff < 24}"><img src="${ctp}/images/new.gif" alt="새글" /></c:if>
-						<c:if test="${vo.replyCnt != 0}"><font color="red">[${vo.replyCnt}]</font></c:if>
 					</td>
 					<td>
 						${vo.nickName}
@@ -99,14 +100,14 @@
 	<!-- 블록페이지 시작 -->
 	<div class="text-center">
 	  <ul class="pagination justify-content-center">
-		  <c:if test="${pag > 1}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pag=1&pageSize=${pageSize}">첫페이지</a></li></c:if>
-		  <c:if test="${curBlock > 0}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pag=${(curBlock-1)*blockSize + 1}&pageSize=${pageSize}">이전블록</a></li></c:if>
+		  <c:if test="${pag > 1}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardSearchList.bo?search=${search}&searchString=${searchString}&pag=1&pageSize=${pageSize}">첫페이지</a></li></c:if>
+		  <c:if test="${curBlock > 0}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardSearchList.bo?search=${search}&searchString=${searchString}&pag=${(curBlock-1)*blockSize + 1}&pageSize=${pageSize}">이전블록</a></li></c:if>
 		  <c:forEach var="i" begin="${(curBlock*blockSize)+1}" end="${(curBlock*blockSize) + blockSize}" varStatus="st">
-		    <c:if test="${i <= totPage && i == pag}"><li class="page-item active"><a class="page-link bg-secondary border-secondary" href="${ctp}/BoardList.bo?pag=${i}&pageSize=${pageSize}">${i}</a></li></c:if>
-		    <c:if test="${i <= totPage && i != pag}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pag=${i}&pageSize=${pageSize}">${i}</a></li></c:if>
+		    <c:if test="${i <= totPage && i == pag}"><li class="page-item active"><a class="page-link bg-secondary border-secondary" href="${ctp}/BoardSearchList.bo?search=${search}&searchString=${searchString}&pag=${i}&pageSize=${pageSize}">${i}</a></li></c:if>
+		    <c:if test="${i <= totPage && i != pag}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardSearchList.bo?search=${search}&searchString=${searchString}&pag=${i}&pageSize=${pageSize}">${i}</a></li></c:if>
 		  </c:forEach>
-		  <c:if test="${curBlock < lastBlock}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pag=${(curBlock+1)*blockSize+1}&pageSize=${pageSize}">다음블록</a></li></c:if>
-		  <c:if test="${pag < totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardList.bo?pag=${totPage}&pageSize=${pageSize}">마지막페이지</a></li></c:if>
+		  <c:if test="${curBlock < lastBlock}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardSearchList.bo?search=${search}&searchString=${searchString}&pag=${(curBlock+1)*blockSize+1}&pageSize=${pageSize}">다음블록</a></li></c:if>
+		  <c:if test="${pag < totPage}"><li class="page-item"><a class="page-link text-secondary" href="${ctp}/BoardSearchList.bo?search=${search}&searchString=${searchString}&pag=${totPage}&pageSize=${pageSize}">마지막페이지</a></li></c:if>
 	  </ul>
 	</div>
 	<!-- 블록페이지 끝 -->
@@ -122,6 +123,7 @@
 			</select>
 			<input type="text" name="searchString" id="searchString" placeholder="검색어를 입력하세요" required />
 			<input type="submit" value="검색" class="btn btn-secondary btn-sm"/>
+			<input type="button" onclick="location.href='BoardList.bo';" value="전체보기" class="btn btn-primary btn-sm"/>
 		</form>
 	</div>
 	<!-- 검색기 끝 -->

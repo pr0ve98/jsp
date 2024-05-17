@@ -13,8 +13,9 @@ public class BoardVO {
 	private int good;
 	
 	private int hour_diff; // 게시글 24시간 경과유무 체크변수
-	private int date_diff;
+	private int date_diff; // 게시글 일자 경과유무 체크변수
 	private String complaint;
+	private int replyCnt; // 부모 게시글 댓글 수 변수
 
 	public int getIdx() {
 		return idx;
@@ -120,13 +121,19 @@ public class BoardVO {
 		this.complaint = complaint;
 	}
 
+	public int getReplyCnt() {
+		return replyCnt;
+	}
+
+	public void setReplyCnt(int replyCnt) {
+		this.replyCnt = replyCnt;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVO [idx=" + idx + ", mid=" + mid + ", nickName=" + nickName + ", title=" + title + ", content="
 				+ content + ", readNum=" + readNum + ", hostIp=" + hostIp + ", openSw=" + openSw + ", wDate=" + wDate
 				+ ", good=" + good + ", hour_diff=" + hour_diff + ", date_diff=" + date_diff + ", complaint="
-				+ complaint + "]";
+				+ complaint + ", replyCnt=" + replyCnt + "]";
 	}
-
-	
 }
