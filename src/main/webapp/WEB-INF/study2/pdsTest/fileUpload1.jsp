@@ -1,21 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%-- <%@ include file = "/include/certification.jsp" %> --%>
 <c:set var="ctp" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>memberMain.jsp</title>
+	<title>fileUpload1.jsp</title>
 	<%@ include file = "/include/bs4.jsp" %>
 	<script>
 		'use strict';
 		
-		function memberPhotoChange() {
+		function fCheck() {
 			let fName = document.getElementById("file").value;
-			let ext = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
 			let maxSize = 1024 * 1024 * 10 // 기본단위는 Byte, 1024 * 1024 * 10 = 10MB 허용
+			let ext = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
 			
 			if(fName.trim() == ""){
 				alert("업로드할 파일을 선택하세요");
@@ -30,10 +29,19 @@
 				alert("업로드 가능한 파일은 jpg/jpeg/png/gif/zip/hwp/ppt/pptx/doc/pdf/xlsx/txt만 가능합니다");
 			}
 			else {
-				$.ajax({
-					url : "MemberPhotoChange.mem",
-					type : "post",
-				});
+				demo.innerHTML = fName;
+				myform.submit();
+			}
+		}
+		
+		// 선택된 그림 미리보기
+		function imgCheck(e) {
+			if(e.files && e.files[0]) {
+				let reader = new FileReader();
+				reader.onload = function(e) {
+					document.getElementById("demoImg").src = e.target.result;
+				}
+				reader.readAsDataURL(e.files[0]);
 			}
 		}
 	</script>
@@ -43,31 +51,22 @@
 <jsp:include page="/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-	<h2>회원 전용방</h2>
+	<h2>파일 업로드 연습(싱글파일처리)</h2>
+	<p>COS라이브러리를 이용한 파일 업로드</p>
+	<div>(http://www.servlets.com/cos/)</div>
 	<hr/>
-	<!-- 실시간 채팅방(DB) -->
-	<img src="${ctp}/images/member/${mVo.photo}" width="200px"/>
-	<hr/>
-	<form name="myform" method="post">
-		<label for="file">회원이미지 변경</label>
-		<div class="form-group mt-2">
-			<input type="file" name="fName" id="file">
-			<input type="button" value="변경" onclick="memberPhotoChange()" class="btn btn-sm btn-warning"/>
-		</div>
+	<form name="myform" method="post" action="FileUpload1Ok.st" enctype="multipart/form-data">
+		파일명: 
+		<input type="file" name="fName" id="file" onchange="imgCheck(this)" class="form-control-file border mb-2"/>
+		<input type="button" value="파일전송" onclick="fCheck()" class="btn btn-success form-control"/>
+		<!-- <input type="submit" value="파일전송" class="btn btn-success form-control"/> -->
+		<input type="hidden" name="nickName" value="${sNickName}" />
 	</form>
 	<hr/>
-	<div>
-		<p>현재 <font color="blue"><b>${sNickName}</b></font>(<font color="red">${sStrLevel}</font>)님이 로그인 중입니다.</p>
-		<p>총 방문횟수 <b>${mVo.visitCnt}</b>회 / 오늘 방문횟수 <b>${mVo.todayCnt}</b>회</p>
-		<p>총 보유 포인트 <b>${mVo.point}</b>점<c:if test="${mVo.todayCnt > 5}"> / (방문포인트 일일 최대한도 초과)</c:if></p>
-	</div>
+	<div id="demo"></div><br/>
+	<img id="demoImg" width="200px"/>
 	<hr/>
-	<div>
-		<h5>활동 내역</h5>
-		<p>방명록에 올린 글 수: <b>${guestCnt}</b>건</p>
-		<p>게시판에 올린 글 수: _건</p>
-		<p>자료실에 올린 글 수: _건</p>
-	</div>
+	<div><a href="FileDownload.st" class="btn btn-primary form-control">다운로드폴더로 이동하기</a></div>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp"/>

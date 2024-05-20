@@ -72,6 +72,10 @@
 	             <li class="sub"><a href="${ctp}/study/database/login.jsp">로그인연습</a></li>
 	             <li class="sub"><a href="Modal1.st">모달연습</a></li>
 	             <li class="sub"><a href="Modal2.st">모달연습2</a></li>
+	             <li class="sub"><a href="FileUpload1.st">싱글파일업로드</a></li>
+	             <li class="sub"><a href="FileUpload2.st">멀티파일업로드2</a></li>
+	             <li class="sub"><a href="FileUpload3.st">멀티파일업로드3</a></li>
+	             <li class="sub"><a href="FileUpload4.st">멀티파일업로드4</a></li>
 	          </ul>
 	      </details>
 	    </c:if>
