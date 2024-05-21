@@ -66,7 +66,10 @@
 	<div id="demo"></div><br/>
 	<img id="demoImg" width="200px"/>
 	<hr/>
-	<div><a href="FileDownload.st" class="btn btn-primary form-control">다운로드폴더로 이동하기</a></div>
+	<div class="row">
+		<div class="col"><a href="FileDownload.st" class="btn btn-primary form-control">다운로드폴더로 이동하기</a></div>
+		<div class="col text-center"><a href="FileUpload.st" class="btn btn-warning form-control">돌아가기</a></div>
+	</div>
 </div>
 <p><br/></p>
 <jsp:include page="/include/footer.jsp"/>

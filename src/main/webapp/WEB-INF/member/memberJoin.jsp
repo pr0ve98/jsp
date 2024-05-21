@@ -24,6 +24,10 @@
     	// 아이디,닉네임,성명,이메일,홈페이지,전화번호,비밀번호 등등....
     	
     	// 검사를 끝내고 필요한 내역들을 변수에 담아 회원가입처리한다.
+    	let fName = document.getElementById("file").value;
+		let ext = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
+		let maxSize = 1024 * 1024 * 5;
+		let fileSize = document.getElementById("file").files[0].size;
     	
     	let email1 = myform.email1.value.trim();
     	let email2 = myform.email2.value;
@@ -96,6 +100,13 @@
     		document.getElementById("hidden-homePage-msg").style.display = "block";
     		myform.homePage.value = "";
 			myform.homePage.focus();
+    	}
+    	// 전송 전 파일관련사항 체크
+    	else if(ext != 'jpg' && ext != 'jpeg' && ext != 'png' && ext != 'gif'){
+    		alert("이미지 파일만 업로드 가능합니다!");
+    	}
+    	else if(fileSize > maxSize){
+    		alert("업로드할 파일의 최대용량은 5MB입니다!");
     	}
     	else if(idCheckSw == 0){
     		alert("아이디 중복체크를 해주세요!");
@@ -234,6 +245,17 @@
 		myform.reset();
 		$("#mid").focus();
 	}
+    
+    // 회원사진 미리보기
+    function imgCheck(e) {
+		if(e.files && e.files[0]) {
+			let reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById("photoDemo").src = e.target.result;
+			}
+			reader.readAsDataURL(e.files[0]);
+		}
+	}
   </script>
 </head>
 <body>
@@ -241,7 +263,7 @@
 <jsp:include page="/include/nav.jsp"/>
 <p><br/></p>
 <div class="container">
-  <form name="myform" method="post" action="${ctp}/MemberJoinOk.mem" class="was-validated">
+  <form name="myform" method="post" action="${ctp}/MemberJoinOk.mem" class="was-validated" enctype="multipart/form-data">
     <h2>회 원 가 입</h2>
     <br/>
     <div class="form-group">
@@ -419,7 +441,8 @@
     </div>
     <div  class="form-group">
       회원 사진(파일용량:2MByte이내) :
-      <input type="file" name="fName" id="file" class="form-control-file border"/>
+      <input type="file" name="fName" id="file" onchange="imgCheck(this)" class="form-control-file border"/>
+      <div><img id="photoDemo" width="100px"/></div>
     </div>
     <button type="button" class="btn btn-secondary" onclick="fCheck()">회원가입</button> &nbsp;
     <button type="button" class="btn btn-secondary" onclick="resetForm()">다시작성</button> &nbsp;

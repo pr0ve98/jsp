@@ -26,13 +26,30 @@
 			if(fileSize > maxSize){
 				alert("업로드할 파일의 최대크기는 10MB입니다");
 			}
-			else if(ext != 'jpg' && ext != 'png' &&ext != 'gif' &&ext != 'zip' &&ext != 'hwp' &&ext != 'ppt' &&ext != 'pptx' &&ext != 'jpeg' &&ext != 'doc' &&ext != 'pdf' &&ext != 'xlsx'&&ext != 'txt'){
-				alert("업로드 가능한 파일은 jpg/jpeg/png/gif/zip/hwp/ppt/pptx/doc/pdf/xlsx/txt만 가능합니다");
+			else if(ext != 'jpg' && ext != 'png' &&ext != 'gif' &&ext != 'jpeg'){
+				alert("이미지 파일만 업로드해주세요");
 			}
 			else {
+				let formData = new FormData();
+				formData.append("fName", document.getElementById("file").files[0]);
+				formData.append("mid", '${sMid}');
+				
 				$.ajax({
 					url : "MemberPhotoChange.mem",
 					type : "post",
+					data : formData,
+					processData: false,
+					contentType: false,
+					success : function(res) {
+						if(res != "0"){
+							alert("변경 완료!");
+							location.reload();
+						}
+						else alert("변경 실패...");
+					},
+					error : function() {
+						alert("오류!!");
+					}
 				});
 			}
 		}
@@ -48,7 +65,7 @@
 	<!-- 실시간 채팅방(DB) -->
 	<img src="${ctp}/images/member/${mVo.photo}" width="200px"/>
 	<hr/>
-	<form name="myform" method="post">
+	<form name="myform" method="post" enctype="multipart/form-data">
 		<label for="file">회원이미지 변경</label>
 		<div class="form-group mt-2">
 			<input type="file" name="fName" id="file">

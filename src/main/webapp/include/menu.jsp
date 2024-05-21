@@ -35,7 +35,7 @@
 	  </c:if>
 	  <c:if test="${level <= 4 && (level > 1 || level == 0)}">
 		<hr/>
-	    <li><a href="">PDS</a></li>
+	    <li><a href="PdsList.pds">PDS</a></li>
 	    <hr/>
 	    <details close>
 	        <summary class="mb-2">Study1</summary>
@@ -72,10 +72,7 @@
 	             <li class="sub"><a href="${ctp}/study/database/login.jsp">로그인연습</a></li>
 	             <li class="sub"><a href="Modal1.st">모달연습</a></li>
 	             <li class="sub"><a href="Modal2.st">모달연습2</a></li>
-	             <li class="sub"><a href="FileUpload1.st">싱글파일업로드</a></li>
-	             <li class="sub"><a href="FileUpload2.st">멀티파일업로드2</a></li>
-	             <li class="sub"><a href="FileUpload3.st">멀티파일업로드3</a></li>
-	             <li class="sub"><a href="FileUpload4.st">멀티파일업로드4</a></li>
+	             <li class="sub"><a href="FileUpload.st">파일업로드</a></li>
 	          </ul>
 	      </details>
 	    </c:if>

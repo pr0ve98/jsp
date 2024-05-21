@@ -7,38 +7,29 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import common.SecurityUtil;
 
-public class MemberJoinOkCommand implements MemberInterface {
+public class MemberJoinOkCommand2 implements MemberInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String realPath = request.getServletContext().getRealPath("/images/member");
-		int maxSize = 1024 * 1024 * 10;
-		String encoding = "UTF-8";
-		
-		MultipartRequest multipartRequest = new MultipartRequest(request, realPath, maxSize, encoding, new DefaultFileRenamePolicy());
-		
-		String mid = multipartRequest.getParameter("mid") == null ? "" : multipartRequest.getParameter("mid");
-		String pwd = multipartRequest.getParameter("pwd") == null ? "" : multipartRequest.getParameter("pwd");
-		String nickName = multipartRequest.getParameter("nickName") == null ? "" : multipartRequest.getParameter("nickName");
-		String name = multipartRequest.getParameter("name") == null ? "" : multipartRequest.getParameter("name");
-		String gender = multipartRequest.getParameter("gender") == null ? "" : multipartRequest.getParameter("gender");
-		String birthday = multipartRequest.getParameter("birthday") == null ? "" : multipartRequest.getParameter("birthday");
-		String tel = multipartRequest.getParameter("tel") == null ? "" : multipartRequest.getParameter("tel");
-		String address = multipartRequest.getParameter("address") == null ? "" : multipartRequest.getParameter("address");
-		String email = multipartRequest.getParameter("email") == null ? "" : multipartRequest.getParameter("email");
-		String homePage = multipartRequest.getParameter("homePage") == null ? "" : multipartRequest.getParameter("homePage");
-		String job = multipartRequest.getParameter("job") == null ? "" : multipartRequest.getParameter("job");
+		String mid = request.getParameter("mid") == null ? "" : request.getParameter("mid");
+		String pwd = request.getParameter("pwd") == null ? "" : request.getParameter("pwd");
+		String nickName = request.getParameter("nickName") == null ? "" : request.getParameter("nickName");
+		String name = request.getParameter("name") == null ? "" : request.getParameter("name");
+		String gender = request.getParameter("gender") == null ? "" : request.getParameter("gender");
+		String birthday = request.getParameter("birthday") == null ? "" : request.getParameter("birthday");
+		String tel = request.getParameter("tel") == null ? "" : request.getParameter("tel");
+		String address = request.getParameter("address") == null ? "" : request.getParameter("address");
+		String email = request.getParameter("email") == null ? "" : request.getParameter("email");
+		String homePage = request.getParameter("homePage") == null ? "" : request.getParameter("homePage");
+		String job = request.getParameter("job") == null ? "" : request.getParameter("job");
 		//String hobby = request.getParameter("hobby") == null ? "" : request.getParameter("hobby");
-		String photo = multipartRequest.getFilesystemName("fName") == null ? "noimage.jpg" : multipartRequest.getFilesystemName("fName");
-		String content = multipartRequest.getParameter("content") == null ? "" : multipartRequest.getParameter("content");
-		String userInfor = multipartRequest.getParameter("userInfor") == null ? "" : multipartRequest.getParameter("userInfor");
+		String photo = request.getParameter("photo") == null ? "noimage.jpg" : request.getParameter("photo");
+		String content = request.getParameter("content") == null ? "" : request.getParameter("content");
+		String userInfor = request.getParameter("userInfor") == null ? "" : request.getParameter("userInfor");
 		
-		String[] hobbys = multipartRequest.getParameterValues("hobby");
+		String[] hobbys = request.getParameterValues("hobby");
 		String hobby = "";
 		if(hobbys.length != 0) {
 			for(String h : hobbys) {
