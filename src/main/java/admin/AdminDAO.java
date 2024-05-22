@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import admin.complaint.ComplaintVO;
+import admin.review.ReviewVO;
 import common.GetConn;
 import member.MemberVO;
 
@@ -227,6 +228,93 @@ public class AdminDAO {
 		} finally {
 			pstmtClose();
 		}
+	}
+
+	// 리뷰 작성 시 동일인물 체크
+	public int getReviewSearch(ReviewVO vo) {
+		int res = 0;
+		try {
+			sql = "select * from review where part=? and partIdx=? and mid=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getPart());
+			pstmt.setInt(2, vo.getPartIdx());
+			pstmt.setString(3, vo.getMid());
+			rs = pstmt.executeQuery();
+			if(rs.next()) res = 1;
+		} catch (SQLException e) {
+			System.out.println("sql 오류 "+e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
+	}
+
+	// 리뷰 작성
+	public int setReviewInputOk(ReviewVO vo) {
+		int res = 0;
+		try {
+			sql = "insert into review values(default, ?, ?, ?, ?, ?, ?, default)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getPart());
+			pstmt.setInt(2, vo.getPartIdx());
+			pstmt.setString(3, vo.getMid());
+			pstmt.setString(4, vo.getNickName());
+			pstmt.setInt(5, vo.getStar());
+			pstmt.setString(6, vo.getContent());
+			res = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("sql 오류 "+e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
+	}
+
+	// 전체리뷰 가져오기
+	public ArrayList<ReviewVO> getReviewList(int idx, String part) {
+		ArrayList<ReviewVO> rVos = new ArrayList<ReviewVO>();
+		try {
+			sql = "select * from review where part=? and partIdx=? order by idx desc";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, part);
+			pstmt.setInt(2, idx);
+			rs = pstmt.executeQuery();
+			
+			ReviewVO vo = null;
+			while(rs.next()) {
+				vo = new ReviewVO();
+				vo.setIdx(rs.getInt("idx"));
+				vo.setPart(rs.getString("part"));
+				vo.setPartIdx(rs.getInt("partIdx"));
+				vo.setMid(rs.getString("mid"));
+				vo.setNickName(rs.getString("nickName"));
+				vo.setStar(rs.getInt("star"));
+				vo.setContent(rs.getString("content"));
+				vo.setrDate(rs.getString("rDate"));
+				rVos.add(vo);
+			}
+		} catch (SQLException e) {
+			System.out.println("sql 오류 "+e.getMessage());
+		} finally {
+			rsClose();
+		}
+		return rVos;
+	}
+
+	// 리뷰 삭제
+	public int setReviewDelete(int idx) {
+		int res = 0;
+		try {
+			sql = "delete from review where idx=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			res = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("sql 오류 "+e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
 	}
 	
 }

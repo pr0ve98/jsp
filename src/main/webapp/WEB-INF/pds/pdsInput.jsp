@@ -36,8 +36,8 @@
 					if(fName != ""){
 						fileSize += document.getElementById(imsiName).files[0].size;
 						let ext1 = fName.substring(fName.lastIndexOf(".")+1).toLowerCase();
-						if(ext1 != 'jpg' && ext1 != 'png' &&ext1 != 'gif' &&ext1 != 'zip' &&ext1 != 'hwp' &&ext1 != 'ppt' &&ext1 != 'pptx' &&ext1 != 'jpeg' &&ext1 != 'doc' &&ext1 != 'pdf' &&ext1 != 'xlsx'&&ext1 != 'txt'){
-							alert("업로드 가능한 파일은 jpg/jpeg/png/gif/zip/hwp/ppt/pptx/doc/pdf/xlsx/txt만 가능합니다");
+						if(ext1 != 'jpg' && ext1 != 'png' &&ext1 != 'gif' &&ext1 != 'zip' &&ext1 != 'hwp' &&ext1 != 'ppt' &&ext1 != 'pptx' &&ext1 != 'jpeg' &&ext1 != 'doc' &&ext1 != 'pdf' &&ext1 != 'xlsx'&&ext1 != 'txt'&&ext1 != 'sql'){
+							alert("업로드 가능한 파일은 jpg/jpeg/png/gif/zip/hwp/ppt/pptx/doc/pdf/xlsx/txt/sql만 가능합니다");
 							return false;
 						}
 					}
