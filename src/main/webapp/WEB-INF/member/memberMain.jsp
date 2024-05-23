@@ -53,6 +53,27 @@
 				});
 			}
 		}
+		
+		function chatInput() {
+			let chat = $("#chat").val();
+			if(chat.trim() != ""){
+				$.ajax({
+					url : "MemberChatInput.mem",
+					type : "post",
+					data : {chat : chat},
+					error : function() {
+						alert("전송오류!");
+					}
+				});
+			}
+		}
+		
+		// 채팅 대화 입력후 엔터키를 누르면 자동으로 메세지 DB에 저장시키기 - chatInput() 호출
+		$(function() {
+			$("#chat").on("keydown", function(e) {
+				if(e.keyCode == 13) chatInput();
+			});
+		});
 	</script>
 </head>
 <body>
@@ -63,6 +84,19 @@
 	<h2>회원 전용방</h2>
 	<hr/>
 	<!-- 실시간 채팅방(DB) -->
+	<div style="width:460px">
+		<form name="chatForm">
+			<label for="chat"><b>실시간 대화방</b></label>
+			<iframe src="${ctp}/include/memberMessage.jsp" width="100%" height="200px" class="border"></iframe>
+			<div class="input-group">
+				<input type="text" name="chat" id="chat" class="form-control" placeholder="채팅을 입력하세요" autofocus/>
+				<div class="input-group-append">
+					<input type="button" value="전송" onclick="chatInput()" class="btn btn-success"/>
+				</div>
+			</div>
+		</form>
+	</div>
+	<hr/>
 	<img src="${ctp}/images/member/${mVo.photo}" width="200px"/>
 	<hr/>
 	<form name="myform" method="post" enctype="multipart/form-data">

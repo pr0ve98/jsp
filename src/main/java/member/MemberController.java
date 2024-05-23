@@ -122,6 +122,11 @@ public class MemberController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+		else if(com.equals("/MemberChatInput")) {
+			command = new MemberChatInputCommand();
+			command.execute(request, response);
+			return;
+		}
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

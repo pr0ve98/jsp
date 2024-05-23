@@ -38,3 +38,29 @@ create table review(
 );
 
 desc review;
+
+-- 리뷰에 댓글 달기
+create table reviewReply(
+	replyIdx int not null auto_increment,/* 댓글 고유번호 */
+	reviewIdx int not null,			/* 원본 리뷰의 고유번호 */
+	replyMid varchar(20) not null,		/* 작성자 아이디 */
+	replyNickName varchar(20) not null,	/* 작성자 닉네임 */
+	replyRDate datetime default now(),	/* 작성 시간 */
+	replyContent text not null,			/* 댓글 내용 */
+	primary key(replyIdx),
+	foreign key(replyMid) references member(mid),
+	foreign key(reviewIdx) references review(idx)
+);
+
+desc reviewReply;
+drop table reviewReply;
+
+select * from review order by idx desc;
+select * from review where partidx=2;
+
+select * from reviewReply order by replyIdx desc;
+
+select * from review v, reviewReply r where v.partIdx=2 and v.idx=r.reviewIdx;
+select * from review v, reviewReply r where v.partIdx=2 and v.idx=r.reviewIdx order by v.idx desc, r.replyIdx desc;
+select * from review v left join reviewReply r on v.partIdx=2 and v.idx=r.reviewIdx order by v.idx desc, r.replyIdx desc;
+select * from (select * from review where partIdx=2) as v left join reviewReply r on v.partIdx=2 and v.idx=r.reviewIdx order by v.idx desc, r.replyIdx desc;

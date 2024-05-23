@@ -13,6 +13,27 @@
 	<%@ include file = "/include/bs4.jsp" %>
 	<script>
 		'use strict';
+		
+		// 처음 접속시는 '리뷰보이기'버튼을 감추고, 리뷰감추기 버튼과 리뷰박스를 보여준다
+		$(function() {
+			$("#reviewShowBtn").hide();
+			$("#reviewHideBtn").show();
+			$("#reviewBox").show();
+		});
+		
+		// 리뷰 보이기
+		function reviewShow() {
+			$("#reviewShowBtn").hide();
+			$("#reviewHideBtn").show();
+			$("#reviewBox").show();
+		}
+		
+		// 리뷰 감추기
+		function reviewHide() {
+			$("#reviewShowBtn").show();
+			$("#reviewHideBtn").hide();
+			$("#reviewBox").hide();
+		}
 
 		// 다운로드 수 증가시키기
 		function downNumCheck(idx) {
@@ -96,6 +117,47 @@
 				}
 			});
 		}
+		
+		// 리뷰 댓글폼 모달에 띄우기
+		function reviewReply(idx, nickName, content) {
+			$("#myModal #reviewIdx").val(idx);
+			$("#myModal #reviewReplyNickName").text(nickName);
+			$("#myModal #reviewReplyContent").html(content);
+		}
+		
+		// 리뷰 댓글 달기
+		function reviewReplyCheck() {
+			let replyContent = reivewReplyForm.replyContent.value;
+			let reviewIdx = reivewReplyForm.reviewIdx.value;
+			
+			if(replyContent.trim() == ""){
+				alert("리뷰 댓글을 입력하세요");
+				return false;
+			}
+			
+			let query = {
+				reviewIdx : reviewIdx,
+				replyMid : '${sMid}',
+				replyNickName : '${sNickName}',
+				replyContent : replyContent
+			}
+			
+			$.ajax({
+				url : "ReviewReplyInputOk.ad",
+				type : "post",
+				data : query,
+				success : function(res) {
+					if(res != "0"){
+						alert("댓글이 등록되었습니다");
+						location.reload();
+					}
+					else alert("댓글 등록 실패!");
+				},
+				error : function() {
+					alert("오류");
+				}
+			});
+		}
 	</script>
 	<style>
 		th {
@@ -129,6 +191,17 @@
 			font-size: 1.6em;
 			color: transparent;
 			text-shadow: 0 0 0 rgba(250, 200, 0, 0.98);
+		}
+		h6 {
+		  position: fixed;
+		  right: 1rem;
+		  bottom: -50px;
+		  transition: 0.7s ease;
+		}
+   		.on {
+		  opacity: 0.8;
+		  cursor: pointer;
+		  bottom: 0;
 		}
 	</style>
 </head>
@@ -212,26 +285,40 @@
 	</div>
 	<hr/>
 	<div id="reviewBox">
+		<c:set var="imsiIdx" value="0"/>
 		<c:forEach var="vo" items="${rVos}" varStatus="st">
-			<div class="row">
-				<div class="col ml-2">
-					<b>${vo.nickName}</b>
-					<span style="font-size:10px">${fn:substring(vo.rDate, 0, 10)}</span>
-					<c:if test="${sMid == vo.mid || sLevel == 0}"><a href="javascript:reviewDelete(${vo.idx})" title="리뷰삭제" class="badge badge-danger">x</a></c:if>
+			<c:if test="${imsiIdx != vo.idx}">
+				<div class="row">
+					<div class="col ml-2">
+						<b>${vo.nickName}</b>
+						<span style="font-size:10px">${fn:substring(vo.rDate, 0, 10)}</span>
+						<c:if test="${sMid == vo.mid || sLevel == 0}"><a href="javascript:reviewDelete(${vo.idx})" title="리뷰삭제" class="badge badge-danger">x</a></c:if>
+						<a href="#" onclick="reviewReply('${vo.idx}','${vo.nickName}','${fn:replace(vo.content,newLine,'<br>')}')" title="댓글달기" data-toggle="modal" data-target="#myModal" class="badge">🗨</a>
+					</div>
+					<div class="col text-right mr-2">
+						<c:forEach var="i" begin="1" end="${vo.star}" varStatus="ist">
+							<font color="gold">★</font>
+						</c:forEach>
+						<c:forEach var="j" begin="1" end="${5 - vo.star}" varStatus="ist">
+							<font color="#eee">★</font>
+						</c:forEach>
+					</div>
 				</div>
-				<div class="col text-right mr-2">
-					<c:forEach var="i" begin="1" end="${vo.star}" varStatus="ist">
-						<font color="gold">★</font>
-					</c:forEach>
-					<c:forEach var="j" begin="1" end="${5 - vo.star}" varStatus="ist">
-						<font color="#eee">★</font>
-					</c:forEach>
+				<div class="row border m-1 p-2" style="border-radius:5px;">
+					${fn:replace(vo.content, newLine, "<br/>")}
 				</div>
-			</div>
-			<div class="row border m-1 p-2" style="border-radius:5px;">
-				${fn:replace(vo.content, newLine, "<br/>")}
-			</div>
-			<hr/>
+			</c:if>
+			<c:set var="imsiIdx" value="${vo.idx}"/>
+			<c:if test="${!empty vo.replyContent}">
+				<div class="d-flex text-secondary">
+					<div class="mt-2 ml-3">└─▷ </div>
+					<div class="mt-2 ml-2">${vo.replyNickName}
+						<span style="font-size:10px">${fn:substring(vo.replyRDate, 0, 10)}</span>
+						<c:if test="${sMid == vo.replyMid || sLevel == 0}"><a href="javascript:replyDelete(${vo.replyIdx})" title="댓글삭제" class="badge badge-danger">x</a></c:if>
+						<br/>${vo.replyContent}
+					</div>
+				</div>
+			</c:if>
 		</c:forEach>
 	</div>
 		
@@ -253,6 +340,47 @@
 	<h6 id="topBtn" class="text-right mr-3"><img src="${ctp}/images/arrow_top.gif" title="상단으로이동"/></h6>
 </div>
 <p><br/></p>
+<!-- 댓글달기를 위한 모달처리 -->
+<!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalTitle">>> 리뷰에 댓글달기</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form name="reivewReplyForm" class="was-vilidated">
+          	<table class="table table-bordered">
+          		<tr>
+          			<th style="width:25%;">리뷰작성자</th>
+          			<td style="width:75%;"><span id="reviewReplyNickName"></span></td>
+          		</tr>
+          		<tr>
+          			<th>리뷰</th>
+          			<td><span id="reviewReplyContent"></span></td>
+          		</tr>
+          	</table>
+          	<hr/>
+          	댓글 작성자: ${sNickName}<br/>
+          	댓글 내용: <textarea rows="3" name="replyContent" id="replyContent" class="form-control" required></textarea><br/>
+          	<input type="button" value="리뷰댓글등록" onclick="reviewReplyCheck()" class="btn btn-success form-control"/>
+          	<input type="hidden" name="reviewIdx" id="reviewIdx" />
+          </form>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-gray" data-dismiss="modal">닫기</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
 <jsp:include page="/include/footer.jsp"/>
 </body>
 </html>

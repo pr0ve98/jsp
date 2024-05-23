@@ -38,3 +38,25 @@ select * from member;
 drop table member;
 
 select lastDate, now(), timestampdiff(day, lastDate, now()) as deleteDiff from member;
+
+-- 실시간 DB채팅 테이블 설계
+create table memberChat (
+	idx int not null auto_increment primary key,
+	nickName varchar(20) not null,
+	chat  varchar(100) not null
+);
+
+desc memberChat;
+
+insert into memberChat values(default, '유찌민', '채팅 생겼다!');
+insert into memberChat values(default, '관리자', '채팅 만들었습니다.');
+insert into memberChat values(default, '유찌민', '관리자보다 빨리 침');
+insert into memberChat values(default, '유찌민', '1등 ㅎ');
+insert into memberChat values(default, '민저이', '개유치');
+insert into memberChat values(default, '유찌민', 'ㅠ');
+insert into memberChat values(default, '한강고양이', '꽁꽁 얼어붙은 한강위로');
+insert into memberChat values(default, '한강고양이', '고양이가 걸어다닙니다');
+insert into memberChat values(default, '민저이', '고양이!!');
+
+select * from memberChat order by idx desc limit 5;
+select m.* from (select * from memberChat order by idx desc limit 5) m order by idx;

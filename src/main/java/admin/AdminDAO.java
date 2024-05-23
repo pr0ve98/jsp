@@ -274,10 +274,13 @@ public class AdminDAO {
 	public ArrayList<ReviewVO> getReviewList(int idx, String part) {
 		ArrayList<ReviewVO> rVos = new ArrayList<ReviewVO>();
 		try {
-			sql = "select * from review where part=? and partIdx=? order by idx desc";
+			//sql = "select * from review where part=? and partIdx=? order by idx desc";
+			sql = "select * from (select * from review where partIdx=? and part=?) as v left join reviewReply r "
+				+ "on v.partIdx=? and v.idx=r.reviewIdx order by v.idx desc, r.replyIdx desc";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, part);
-			pstmt.setInt(2, idx);
+			pstmt.setInt(1, idx);
+			pstmt.setString(2, part);
+			pstmt.setInt(3, idx);
 			rs = pstmt.executeQuery();
 			
 			ReviewVO vo = null;
@@ -291,6 +294,13 @@ public class AdminDAO {
 				vo.setStar(rs.getInt("star"));
 				vo.setContent(rs.getString("content"));
 				vo.setrDate(rs.getString("rDate"));
+				
+				vo.setReplyIdx(rs.getInt("replyIdx"));
+				vo.setReplyMid(rs.getString("replyMid"));
+				vo.setReplyNickName(rs.getString("replyNickName"));
+				vo.setReplyRDate(rs.getString("replyRDate"));
+				vo.setReplyContent(rs.getString("replyContent"));
+				
 				rVos.add(vo);
 			}
 		} catch (SQLException e) {
@@ -308,6 +318,25 @@ public class AdminDAO {
 			sql = "delete from review where idx=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, idx);
+			res = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("sql 오류 "+e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
+	}
+
+	// 리뷰 댓글 추가
+	public int setReviewReplyInputOk(ReviewVO vo) {
+		int res = 0;
+		try {
+			sql = "insert into reviewReply values(default, ?, ?, ?, default, ?)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, vo.getIdx());
+			pstmt.setString(2, vo.getReplyMid());
+			pstmt.setString(3, vo.getReplyNickName());
+			pstmt.setString(4, vo.getReplyContent());
 			res = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("sql 오류 "+e.getMessage());
