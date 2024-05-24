@@ -13,7 +13,7 @@
 				<ul>
 					<li class="sub"><a href="MemberMain.mem">회원메인방</a></li>
 					<c:if test="${level <= 4 && (level > 1 || level == 0)}">
-						<li class="sub"><a href="#">일정관리</a></li>
+						<li class="sub"><a href="Schedule.sc">일정관리</a></li>
 						<li class="sub"><a href="#">메시지관리</a></li>
 						<li class="sub"><a href="MemberList.mem">회원리스트</a></li>
 					</c:if>
@@ -73,6 +73,13 @@
 	             <li class="sub"><a href="Modal1.st">모달연습</a></li>
 	             <li class="sub"><a href="Modal2.st">모달연습2</a></li>
 	             <li class="sub"><a href="FileUpload.st">파일업로드</a></li>
+	          </ul>
+	      </details>
+	    <details close>
+	        <summary class="mb-2">Study3</summary>
+	        	<ul>
+	             <li class="sub"><a href="Calendar1.st">캘린더연습1</a></li>
+	             <li class="sub"><a href="Calendar2.st">캘린더연습2</a></li>
 	          </ul>
 	      </details>
 	    </c:if>
