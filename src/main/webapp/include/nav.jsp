@@ -76,6 +76,8 @@
 			    <div class="dropdown-menu">
 			      <a class="dropdown-item" href="Calendar1.st">캘린더연습1</a>
 			      <a class="dropdown-item" href="Calendar2.st">캘린더연습2</a>
+			      <a class="dropdown-item" href="ScrollStudy.st">스크롤 연습</a>
+			      <a class="dropdown-item" href="ScrollBasic.st">무한 스크롤</a>
 			    </div>
 			 </div>
 	      </li>
@@ -89,7 +91,7 @@
 			      <a class="dropdown-item" href="MemberMain.mem">회원메인방</a>
 			      <c:if test="${level <= 4 && (level > 1 || level == 0)}">
 					  <a class="dropdown-item" href="Schedule.sc">일정관리</a>
-					  <a class="dropdown-item" href="#">메시지관리</a>
+					  <a class="dropdown-item" href="WebMessage.wm">메시지관리</a>
 				      <a class="dropdown-item" href="MemberList.mem">회원리스트</a>
 			      </c:if>
 			      <a class="dropdown-item" href="MemberPwdCheck.mem">회원정보수정</a>
