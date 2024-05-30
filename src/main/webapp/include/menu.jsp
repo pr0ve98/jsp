@@ -83,6 +83,7 @@
 	             <li class="sub"><a href="ScrollStudy.st">스크롤 연습</a></li>
 	             <li class="sub"><a href="ScrollBasic.st">무한 스크롤</a></li>
 	             <li class="sub"><a href="Transaction.st">트랜잭션연습</a></li>
+	             <li class="sub"><a href="Error.st">에러페이지</a></li>
 	          </ul>
 	      </details>
 	    </c:if>
